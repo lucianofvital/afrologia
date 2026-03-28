@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afrologia - Coletivo de Poesia Marginal - Recife</title>
+    <meta name="description" content="Afrologia: Coletivo de 5 poetas marginais da Região Metropolitana do Recife. Slam nas ruas, praças e praias.">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar navbar-light sticky-top navbar-premium">
+        <div class="container-fluid px-md-5">
+            <a class="navbar-brand" href="#">
+                <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-end offcanvas-premium" tabindex="-1" id="menuLateral">
+        <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fonte-impacto" id="menuLateralLabel">AFROLOGIA</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav flex-grow-1 pe-3 text-center fs-5">
+                <li class="nav-item m-2"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="#livros">Livros</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="#poetas">Poetas</a></li>
+                <li class="nav-item m-2"><a class="nav-link" href="#contato">Contato</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <main>
+        <section class="section-hero-bio">
+            <div class="hero-group-phot reveal">
+                <img src="afrologiahome.png" alt="Afrologia - Coletivo de Poetas" class="group-photo-img">
+                
+            </div>
+
+            <h1 class="hero-title-bio reveal">AFROLOGIA</h1>
+            
+            <p class="hero-tagline reveal">Poesia Marginal. Resistência. Transformação.</p>
+            
+            <p class="hero-copy reveal">Um coletivo de 5 poetas do Recife que usam as ruas, praças e slam como palco para a palavra que liberta. Afrologia é machado que quebra corrente.</p>
+            
+            <div id="frasesCarousel" class="carousel slide reveal carousel-bio" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active" data-bs-interval="3800">
+                        <p class="frase-bio">"Afrologia é machado<br>que quebra corrente."</p>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3800">
+                        <p class="frase-bio">"Afrologia é caneta<br>que assina alforria."</p>
+                    </div>
+                    <div class="carousel-item" data-bs-interval="3800">
+                        <p class="frase-bio">"Afrologia é cura<br>para a pandemia."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-botoes-bio reveal">
+                <a href="#poetas" class="btn-floating-arrow scroll-link">
+                    <span class="arrow-icon">↓</span>
+                </a>
+            </div>
+        </section>
+
+        <section id="poetas" class="section-poetas-bio">
+            <h2 class="section-title reveal">OS POETAS</h2>
+            <div class="poetas-container">
+                <!-- POETA 1: Lucas Marafa -->
+                <div class="poeta-bio-card reveal">
+                    <div class="instagram-profile-frame">
+                        <img src="marafa.png" alt="Lucas Marafa" class="poeta-img-bio">
+                    </div>
+                    <div class="poeta-info-bio">
+                        <h3 class="poet-username">@lucasmarafa</h3>
+                        <h2 class="poet-name">Lucas Marafa</h2>
+                        <p class="poet-bio">Poeta marginal. Slam nas ruas de Recife, Região Metropolitana.</p>
+                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
+                    </div>
+                </div>
+
+                <!-- POETA 2: Juan Falik -->
+                <div class="poeta-bio-card reveal">
+                    <div class="instagram-profile-frame">
+                        <img src="falik.png" alt="Juan Falik" class="poeta-img-bio">
+                    </div>
+                    <div class="poeta-info-bio">
+                        <h3 class="poet-username">@juanfalik</h3>
+                        <h2 class="poet-name">Juan Falik</h2>
+                        <p class="poet-bio">Voz poética do Nordeste. Slam, rima e resistência.</p>
+                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
+                    </div>
+                </div>
+
+                <!-- POETA 3: João Boca de Nego -->
+                <div class="poeta-bio-card reveal">
+                    <div class="instagram-profile-frame">
+                        <img src="boca.png" alt="João Boca de Nego" class="poeta-img-bio">
+                    </div>
+                    <div class="poeta-info-bio">
+                        <h3 class="poet-username">@joaobocadenego</h3>
+                        <h2 class="poet-name">João Boca de Nego</h2>
+                        <p class="poet-bio">Poesia marginal nas praças. Recife é meu palco.</p>
+                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
+                    </div>
+                </div>
+
+                <!-- POETA 4: Chico Preto -->
+                <div class="poeta-bio-card reveal">
+                    <div class="instagram-profile-frame">
+                        <img src="chico.png" alt="Chico Preto" class="poeta-img-bio">
+                    </div>
+                    <div class="poeta-info-bio">
+                        <h3 class="poet-username">@chicopreto</h3>
+                        <h2 class="poet-name">Chico Preto</h2>
+                        <p class="poet-bio">Poeta das ruas. Slam e poesia performática.</p>
+                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
+                    </div>
+                </div>
+
+                <!-- POETA 5: Mago de Bom -->
+                <div class="poeta-bio-card reveal">
+                    <div class="instagram-profile-frame">
+                        <img src="mago.png" alt="Mago de Bom" class="poeta-img-bio">
+                    </div>
+                    <div class="poeta-info-bio">
+                        <h3 class="poet-username">@magodebom</h3>
+                        <h2 class="poet-name">Mago de Bom</h2>
+                        <p class="poet-bio">Afrologia é magia. Poesia como resistência.</p>
+                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer-afrologia">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3 class="footer-title">AFROLOGIA</h3>
+                <p class="footer-description">Poesia Marginal. Resistência. Transformação.</p>
+            </div>
+            <div class="footer-section">
+                <p class="footer-link">© 2024 Todos os direitos reservados</p>
+                <p class="footer-creator">Desenvolvido por: <span>Luciano Fernandes</span></p>
+            </div>
+        </div>
+        <div class="footer-divider"></div>
+        <div class="footer-bottom">
+            <p class="footer-credit">Afrologia - Um coletivo de poetas do Recife</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,1289 @@
+/* ============================================================
+   VARIÁVEIS DE COR E ATMOSFERA PRETO, BRANCO E MARROM (Tema Claro)
+   ============================================================ */
+:root {
+    /* Cores do Tema Claro (Clarificado - 5 Tons Mais Claros) */
+    --cor-fundo-papeu: #faf8f6;     /* Fundo bem claro, quase branco com toque quente */
+    --cor-fundo-card-off-white: #ffffff; /* Branco puro para os cards */
+    --cor-texto-preto-profundo: #1a1a1a; /* Preto um pouco mais suave */
+    --cor-texto-marrom-terroso: #a0612d; /* Marrom mais claro e quente (5 tons acima) */
+    --cor-marrom-escuro: #8B4513; /* Marrom original para acentos */
+    --cor-marrom-claro: #c9956b; /* Marrom bem claro para destaques */
+    
+    /* Brilhos e Sombras Sofisticadas (Light Mode Moderno) */
+    --brilho-quente: rgba(160, 97, 45, 0.35); /* Marrom claro com transparência */
+    --sombra-premium-light: 0 8px 24px rgba(0,0,0,0.08); /* Sombra muito suave */
+    --sombra-profunda: 0 20px 50px rgba(160, 97, 45, 0.15); /* Sombra com toque marrom */
+    
+    /* Fontes */
+    --fonte-urban: 'Anton', sans-serif;
+    --fonte-body: 'Inter', sans-serif;
+}
+
+/* ============================================================
+   ESTILOS GLOBAIS E FUNDO TEXTURIZADO CLARO
+   ============================================================ */
+body {
+    background-color: var(--cor-fundo-papeu);
+    color: var(--cor-texto-preto-profundo);
+    font-family: var(--fonte-body);
+    overflow-x: hidden;
+    position: relative;
+    background: linear-gradient(135deg, #faf8f6 0%, #f5f3f0 50%, #faf8f6 100%);
+    min-height: 100vh;
+}
+
+/* Fundo Dinâmico com Gradiente Animado e Formas */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+        #faf8f6 0%,
+        #f0e8e0 20%,
+        #e8dcd0 40%,
+        #f5f3f0 60%,
+        #ffe8d6 80%,
+        #faf8f6 100%
+    );
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Camada Decorativa com Formas */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(160, 97, 45, 0.08) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(192, 105, 60, 0.06) 0%, transparent 50%),
+        radial-gradient(circle at 40% 30%, rgba(201, 149, 107, 0.07) 0%, transparent 50%);
+    background-size: 100% 100%;
+    animation: shapePulse 20s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes shapePulse {
+    0%, 100% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.8;
+    }
+}
+
+/* Tipografia Urbano Nitida */
+.fonte-impacto {
+    font-family: var(--fonte-urban);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: normal;
+}
+
+/* ============================================================
+   SEÇÃO HERO - ESTILO LINK NA BIO (Mobile First)
+   ============================================================ */
+.section-hero-bio {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 2.5rem 1.2rem 3rem 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+/* FOTO DO GRUPO - Sales Page Style */
+.hero-group-photo {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 3 / 2;
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 
+        0 0 60px rgba(160, 97, 45, 0.25),
+        0 20px 60px rgba(139, 69, 19, 0.15),
+        0 0 0 1px rgba(160, 97, 45, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.group-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-group-photo:hover .group-photo-img {
+    transform: scale(1.05);
+}
+
+.photo-overlay {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(160, 97, 45, 0.95);
+    color: white;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-family: 'Anton', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 900;
+    letter-spacing: 0.1rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px rgba(160, 97, 45, 0.3);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HERO TITLE - Obra de Arte Lapidada */
+.hero-title-bio {
+    font-size: min(14rem, 18vw);
+    font-weight: 900;
+    margin: 0.5rem 0 1rem 0;
+    letter-spacing: -0.02em;
+    font-family: 'Anton', sans-serif;
+    text-transform: uppercase;
+    line-height: 1;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    
+    /* Animação de Entrada */
+    animation: slideInDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    /* Transform Suave */
+    transform: perspective(1200px);
+}
+
+.hero-title-bio:hover {
+    transform: perspective(1200px) translateY(-2px);
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* TAGLINE - Sales Copy Atrativa */
+.hero-tagline {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--cor-texto-marrom-terroso);
+    margin: 0.5rem 0 1.2rem 0;
+    letter-spacing: 0.05rem;
+    text-transform: uppercase;
+    font-family: var(--fonte-body);
+    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+/* COPY - Texto Descritivo */
+.hero-copy {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--cor-texto-preto-profundo);
+    margin: 0 0 2rem 0;
+    max-width: 380px;
+    font-weight: 400;
+    opacity: 0.95;
+    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+@media (max-width: 768px) {
+    .hero-title-bio {
+        font-size: min(10rem, 16vw);
+        letter-spacing: -0.02em;
+    }
+    
+    .hero-group-photo {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title-bio {
+        font-size: min(7rem, 15vw);
+        letter-spacing: -0.02em;
+    }
+    
+    .hero-tagline {
+        font-size: 1rem;
+    }
+    
+    .hero-copy {
+        font-size: 0.95rem;
+    }
+    
+    .btn-bio {
+        padding: 15px 28px;
+        font-size: 0.9rem;
+    }
+}
+
+/* CARROSSEL DE FRASES - Centralizado */
+.carousel-bio {
+    width: 100%;
+    margin: 0 0 1.5rem 0 !important;
+    padding: 0 !important;
+}
+
+.carousel-bio .carousel-inner {
+    background: transparent;
+    padding: 1rem 0;
+}
+
+.frase-bio {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--cor-texto-marrom-terroso);
+    font-style: italic;
+    margin: 0;
+    line-height: 1.5;
+    letter-spacing: 0.3px;
+    text-align: center;
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* ============================================================
+   NAVBAR PREMIUM E MENU HAMBÚRGUER (Moderno com Gradiente)
+   ============================================================ */
+.navbar-premium {
+    background: linear-gradient(135deg, #ffffff 0%, #faf8f6 50%, #f5f3f0 100%);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(160, 97, 45, 0.15);
+    padding: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-premium .navbar-brand {
+    margin-right: 1rem;
+}
+
+.logo-premium {
+    max-height: 45px;
+    filter: drop-shadow(0 2px 6px rgba(160, 97, 45, 0.2));
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.navbar-premium:hover .logo-premium {
+    filter: drop-shadow(0 4px 12px rgba(160, 97, 45, 0.3));
+}
+
+.navbar-premium .navbar-toggler {
+    border: 1px solid rgba(160, 97, 45, 0.3);
+    background: rgba(160, 97, 45, 0.1);
+    border-radius: 8px;
+    padding: 0.4rem 0.6rem;
+    transition: all 0.3s;
+}
+
+.navbar-premium .navbar-toggler:hover {
+    background: rgba(160, 97, 45, 0.2);
+    border-color: var(--cor-texto-marrom-terroso);
+}
+
+.navbar-premium .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(160, 97, 45, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.offcanvas-premium {
+    background: #a0612d !important;
+    box-shadow: -15px 0 50px rgba(160, 97, 45, 0.12);
+}
+
+.offcanvas-premium .offcanvas-header {
+    border-bottom: 2px solid rgba(160, 97, 45, 0.25) !important;
+    background: linear-gradient(90deg, rgba(160, 97, 45, 0.08) 0%, rgba(160, 97, 45, 0.02) 100%);
+    padding: 1rem 1.2rem;
+}
+
+.offcanvas-premium .offcanvas-title {
+    letter-spacing: 1.5px;
+    font-size: 1.7rem;
+    color: white;
+    font-weight: 900;
+    text-transform: uppercase;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.offcanvas-premium .btn-close {
+    color: white;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+}
+
+.offcanvas-premium .nav-link {
+    color: white !important;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    padding: 1rem 1.2rem;
+    border-radius: 10px;
+    margin: 0.6rem 0.8rem;
+    font-weight: 700;
+    font-size: 1rem;
+    border-left: 4px solid transparent;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.offcanvas-premium .nav-link:hover {
+    color: white !important;
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    transform: translateX(12px);
+    border-left: 4px solid var(--cor-marrom-claro);
+    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25);
+}
+
+/* HERO SECTION: AFROLOGIA (O Nome Imponente e Nitido) */
+.hero-title-premium-nitido {
+    font-size: calc(3.2rem + 3.5vw);
+    line-height: 1;
+    margin: 0;
+    
+    /* Gradient moderno com marrom */
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 50%, #734721 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    filter: drop-shadow(0 2px 8px rgba(160, 97, 45, 0.2));
+    letter-spacing: 0.08rem;
+    animation: slideInDown 0.8s ease-out;
+}
+
+@keyframes floatBounce {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes slideDownArrow {
+    0%, 100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateY(8px);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Carrossel de Frases (Classe removida - usar frase-bio) */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* FOTO DESTAQUE - Removida (Não mais usada em hero) */
+
+/* INSTAGRAM PROFILE FRAME - Foto Circular Ultra-Compacta */
+.instagram-profile-frame {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0;
+    
+    /* Degradê colorido na borda: 4 anéis marrom */
+    box-shadow: 
+        0 0 0 2px rgba(160, 97, 45, 0.6),
+        0 0 0 4px rgba(139, 69, 19, 0.5),
+        0 0 0 6px rgba(201, 149, 107, 0.4),
+        0 0 12px rgba(160, 97, 45, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    
+    background: linear-gradient(135deg, rgba(160, 97, 45, 0.08) 0%, rgba(139, 69, 19, 0.03) 100%);
+    border: none;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.instagram-profile-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 35% 35%, transparent 0%, rgba(160, 97, 45, 0.02) 100%);
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.poeta-img-bio {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    display: block;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    filter: brightness(1) contrast(1.1) saturate(1.05);
+}
+
+.poeta-bio-card:hover .poeta-img-bio {
+    transform: scale(1.12);
+    filter: brightness(1.1) contrast(1.2) saturate(1.15);
+}
+
+/* CONTAINER DE BOTÕES - Estilo Link na Bio */
+.container-botoes-bio {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 3rem;
+    padding-bottom: 2rem;
+}
+
+.btn-floating-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: rgba(160, 97, 45, 0.12);
+    border: 2.5px solid rgba(160, 97, 45, 0.3);
+    text-decoration: none;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    animation: floatBounce 3s ease-in-out infinite;
+}
+
+.btn-floating-arrow:hover {
+    background: rgba(160, 97, 45, 0.25);
+    border-color: rgba(160, 97, 45, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 8px 30px rgba(160, 97, 45, 0.2);
+}
+
+.arrow-icon {
+    font-size: 2rem;
+    color: #a0612d;
+    font-weight: bold;
+    line-height: 1;
+    animation: slideDownArrow 1.5s ease-in-out infinite;
+}
+
+.btn-bio {
+    display: block;
+    padding: 18px 36px;
+    border-radius: 36px;
+    font-family: var(--fonte-urban);
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: 1.2px;
+    text-decoration: none;
+    text-align: center;
+    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    border: none;
+    cursor: pointer;
+    font-weight: 800;
+    width: 100%;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-bio::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-bio:active::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-bio-primary {
+    background: linear-gradient(135deg, #a0612d 0%, #8B4513 50%, #6b3410 100%);
+    color: white;
+    box-shadow: 
+        0 12px 32px rgba(160, 97, 45, 0.35),
+        0 0 20px rgba(160, 97, 45, 0.15);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-bio-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transition: left 0.7s ease;
+    z-index: 1;
+}
+
+.btn-bio-primary:hover::before {
+    left: 100%;
+}
+
+.btn-bio-primary:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 
+        0 20px 60px rgba(160, 97, 45, 0.55),
+        0 0 40px rgba(160, 97, 45, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    color: white;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+}
+
+.btn-bio-secondary {
+    background-color: rgba(255, 255, 255, 0.95);
+    color: var(--cor-texto-marrom-terroso);
+    border: 2.5px solid var(--cor-texto-marrom-terroso);
+    box-shadow: 0 12px 32px rgba(160, 97, 45, 0.2);
+}
+
+.btn-bio-secondary:hover {
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    color: white;
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 
+        0 20px 55px rgba(160, 97, 45, 0.45),
+        0 0 30px rgba(160, 97, 45, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    border-color: transparent;
+    letter-spacing: 1.5px;
+}
+
+/* CARD POETA - Layout Vertical Compacto (Foto Esquerda + Info Coluna + Botão Embaixo) */
+.poeta-bio-card {
+    background: #fff;
+    border: 1px solid rgba(160, 97, 45, 0.12);
+    border-radius: 14px;
+    padding: 0.8rem;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 300px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto auto;
+    gap: 0.7rem 0.6rem;
+}
+
+.poeta-bio-card:hover {
+    box-shadow: 0 12px 40px rgba(160, 97, 45, 0.2);
+    transform: translateY(-6px);
+    border-color: var(--cor-texto-marrom-terroso);
+    background: linear-gradient(135deg, #ffffff 0%, rgba(160, 97, 45, 0.03) 100%);
+}
+
+/* Foto ocupa primeira coluna, todas as linhas */
+.poeta-bio-card .instagram-profile-frame {
+    grid-column: 1;
+    grid-row: 1 / 3;
+}
+
+/* Info ocupa segunda coluna, primeira e segunda linhas */
+.poeta-info-bio {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.2rem;
+}
+
+/* Botão ocupa toda a largura na primeira coluna, última linha */
+.poeta-bio-card .btn-bio-mini {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 0;
+    padding: 7px 10px;
+}
+
+.poet-username {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--cor-texto-marrom-terroso);
+    margin: 0;
+    letter-spacing: 0.3px;
+    font-family: var(--fonte-body);
+    text-transform: uppercase;
+}
+
+.poet-name {
+    font-size: 0.92rem;
+    font-weight: 800;
+    margin: 0;
+    color: var(--cor-texto-preto-profundo);
+    font-family: var(--fonte-urban);
+    letter-spacing: 0.02rem;
+    line-height: 1.05;
+}
+
+.poet-bio {
+    font-size: 0.73rem;
+    color: #888;
+    margin: 0;
+    line-height: 1.2;
+    font-weight: 400;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* BOTÃO MINI - Saiba Mais Ultra-Compacto */
+.btn-bio-mini {
+    width: 100%;
+    padding: 7px 10px;
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-family: var(--fonte-body);
+    font-size: 0.65rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 3px 10px rgba(160, 97, 45, 0.2);
+    letter-spacing: 0.2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-bio-mini:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.35);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-bio-mini:active {
+    transform: translateY(0);
+}
+
+/* Título da Seção (A Linha Marrom) */
+.title-underlined-marrom {
+    color: #000;
+    position: relative;
+    display: inline-block;
+}
+
+.title-underlined-marrom::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; left: 25%;
+    width: 50%; height: 4px;
+    background-color: var(--cor-texto-marrom-terroso);
+    border-radius: 2px;
+}
+
+/* BOTÕES PREMIUM (Tema Claro - Modernizado) */
+
+/* Botão Marrom Premium */
+.btn-premium-marrom-outline {
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-family: var(--fonte-urban);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 14px 28px;
+    letter-spacing: 1.2px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    text-shadow: none;
+    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-premium-marrom-outline::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-premium-marrom-outline:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(160, 97, 45, 0.4);
+}
+
+.btn-premium-marrom-outline:hover::before {
+    left: 100%;
+}
+
+/* Botão Preto Moderno */
+.btn-premium-preto-outline {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 30px;
+    font-family: var(--fonte-urban);
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    padding: 14px 28px;
+    letter-spacing: 1.2px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.btn-premium-preto-outline:hover {
+    background-color: #000;
+    border-color: var(--cor-texto-marrom-terroso);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+/* Botão Preenchido Marrom */
+.btn-premium-marrom {
+    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    color: white !important;
+    border: none;
+    border-radius: 25px;
+    font-family: var(--fonte-urban);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 12px 24px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 6px 15px rgba(160, 97, 45, 0.2);
+}
+
+.btn-premium-marrom:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(160, 97, 45, 0.35);
+}
+
+/* RESPONSIVIDADE - Link na Bio Mobile */
+@media (max-width: 480px) {
+    .section-hero-bio {
+        padding: 1rem 0.8rem;
+    }
+
+    .hero-title-bio {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .frase-bio {
+        font-size: 0.9rem;
+    }
+
+    .container-botoes-bio {
+        gap: 0.6rem;
+        margin-top: 1rem;
+    }
+
+    .btn-bio {
+        padding: 12px 20px;
+        font-size: 0.8rem;
+    }
+
+    .poetas-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 0 0.5rem;
+    }
+
+    .poet-name {
+        font-size: 1.1rem;
+    }
+
+    .poet-bio {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-hero-bio {
+        max-width: 100%;
+    }
+
+    .poetas-container {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+}
+
+@media (min-width: 769px) {
+    .poetas-container {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+/* ============================================================
+   ANIMAÇÕES REVEAL - ScrollReveal Otimizado
+   ============================================================ */
+.reveal {
+    opacity: 1;
+}
+
+/* ============================================================
+   SEÇÃO DE POETAS - Melhorada
+   ============================================================ */
+#poetas {
+    background: linear-gradient(135deg, rgba(245, 243, 240, 0.7) 0%, rgba(250, 248, 246, 0.7) 100%);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(160, 97, 45, 0.1);
+}
+
+/* ============================================================
+   TIPOGRAFIA MELHORADA
+   ============================================================ */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fonte-urban);
+    color: var(--cor-texto-preto-profundo);
+}
+
+p {
+    line-height: 1.7;
+    color: var(--cor-texto-preto-profundo);
+}
+
+.text-muted {
+    color: #999 !important;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+/* ============================================================
+   EFETO DE LINK NO MENU
+   ============================================================ */
+.nav-link {
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: var(--cor-texto-marrom-terroso);
+    transition: left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.nav-link:hover::after {
+    left: 0%;
+}
+
+/* ============================================================
+   OFFCANVAS MENU MELHORADO
+   ============================================================ */
+.offcanvas {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%) !important;
+    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
+}
+
+.offcanvas-title {
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+}
+
+/* ============================================================
+   CONTAINER E GRID - Responsividade Premium
+   ============================================================ */
+@media (max-width: 768px) {
+    .section-hero {
+        min-height: 80vh;
+        padding-top: 1rem;
+    }
+
+    .hero-title-premium-nitido {
+        font-size: calc(2rem + 3vw);
+    }
+
+    .container-botoes {
+        gap: 0.5rem;
+    }
+
+    .btn-premium-marrom-outline,
+    .btn-premium-preto-outline {
+        padding: 12px 20px;
+        font-size: 0.75rem;
+    }
+
+    .poeta-card-balao {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title-premium-nitido {
+        font-size: calc(1.8rem + 2.5vw);
+    }
+
+    .btn-premium-marrom-outline,
+    .btn-premium-preto-outline {
+        padding: 10px 16px;
+        font-size: 0.7rem;
+    }
+
+    .poeta-card-balao {
+        padding: 1.5rem 1rem;
+    }
+}
+
+/* ============================================================
+   SMOOTH SCROLL BEHAVIOR
+   ============================================================ */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ============================================================
+   FOCUS STATES - Acessibilidade
+   ============================================================ */
+button:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--cor-texto-marrom-terroso);
+    outline-offset: 2px;
+}
+
+/* ============================================================
+   SEÇÃO POETAS - ESTILO BIO DO INSTAGRAM
+   ============================================================ */
+.section-poetas-bio {
+    background: linear-gradient(135deg, rgba(250, 248, 246, 0.95) 0%, rgba(245, 243, 240, 0.95) 100%);
+    padding: 4rem 1.5rem;
+    min-height: auto;
+    border-top: 1px solid rgba(160, 97, 45, 0.1);
+    position: relative;
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--cor-texto-preto-profundo);
+    font-family: var(--fonte-urban);
+    letter-spacing: 0.1rem;
+    position: relative;
+    padding-bottom: 1.5rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, transparent 0%, var(--cor-texto-marrom-terroso) 20%, var(--cor-texto-marrom-terroso) 80%, transparent 100%);
+    border-radius: 2px;
+}
+
+.section-poetas-bio::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100px;
+    background: linear-gradient(180deg, rgba(160, 97, 45, 0.02) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.poetas-container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+    padding: 0;
+}
+
+@media (max-width: 1024px) {
+    .poetas-container {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .section-poetas-bio {
+        padding: 3rem 1rem;
+    }
+
+    .poetas-container {
+        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+        gap: 1.4rem;
+    }
+    
+    .poeta-bio-card {
+        grid-template-columns: 90px 1fr;
+        padding: 0.7rem;
+    }
+    
+    .instagram-profile-frame {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-poetas-bio {
+        padding: 2rem 0.8rem;
+    }
+
+    .poetas-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .poeta-bio-card {
+        max-width: 100%;
+        grid-template-columns: 85px 1fr;
+        padding: 0.6rem;
+    }
+    
+    .instagram-profile-frame {
+        width: 85px;
+        height: 85px;
+    }
+    
+    .poet-name {
+        font-size: 0.88rem;
+    }
+    
+    .poet-bio {
+        font-size: 0.68rem;
+    }
+    
+    .btn-bio-mini {
+        font-size: 0.62rem;
+        padding: 6px 8px;
+    }
+}
+
+/* Responsividade para Botão Flutuante */
+@media (max-width: 768px) {
+    .btn-floating-arrow {
+        width: 65px;
+        height: 65px;
+    }
+    
+    .arrow-icon {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-floating-arrow {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .arrow-icon {
+        font-size: 1.6rem;
+    }
+}
+
+/* ============================================================
+   FOOTER - ESTILO ELEGANTE E MODERNO
+   ============================================================ */
+.footer-afrologia {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+    color: #ffffff;
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-afrologia::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #a0612d 20%, #a0612d 80%, transparent 100%);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 0.8rem;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.footer-title {
+    font-size: 0.95rem;
+    font-weight: 900;
+    font-family: 'Anton', sans-serif;
+    letter-spacing: 0.05rem;
+    color: #a0612d;
+    text-transform: uppercase;
+}
+
+.footer-description {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 300;
+}
+
+.footer-link {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    margin: 0;
+}
+
+.footer-creator {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-weight: 400;
+}
+
+.footer-creator span {
+    color: #a0612d;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.footer-divider {
+    width: 60px;
+    height: 2px;
+    background: #a0612d;
+    margin: 0.8rem auto;
+    border-radius: 1px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 0.8rem;
+    border-top: 1px solid rgba(160, 97, 45, 0.15);
+}
+
+.footer-credit {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+    font-style: italic;
+    letter-spacing: 0.2px;
+}
+
+/* Responsividade Footer */
+@media (max-width: 768px) {
+    .footer-afrologia {
+        padding: 1.5rem 1rem 1rem 1rem;
+        margin-top: 2rem;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .footer-section {
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    .footer-title {
+        font-size: 0.85rem;
+    }
+
+    .footer-divider {
+        margin: 0.5rem auto;
+    }
+}
