@@ -9,134 +9,191 @@
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <nav class="navbar navbar-light sticky-top navbar-premium">
-        <div class="container-fluid px-md-5">
-            <a class="navbar-brand" href="#">
-                <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#menuLateral">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
+<body data-bs-spy="scroll" data-bs-target="#afro-menu">
+
+    <div class="header-fundo"></div>
+    
+    <!-- HEADER -->
+    <input type="checkbox" id="afro-navcheck" role="button" title="menu">
+    
+    <!-- Ícone Hambúrguer -->
+    <label for="afro-navcheck" aria-hidden="true" title="menu" class="afro-nav-label">
+        <span class="burger">
+            <span class="bar">
+                <span class="visuallyhidden">Menu</span>
+            </span>
+        </span>
+    </label>
+
+    <!-- Fundo e Links do Menu lateral -->
+    <nav id="afro-menu" class="afro-nav-menu">
+        <a href="#cp-home" class="afro-nav-link scroll-link">Início</a>
+        <a href="#hero-afrologia-blob" class="afro-nav-link scroll-link">Afrologia</a>
+        <a href="#poetas" class="afro-nav-link scroll-link">Poetas</a>
     </nav>
 
-    <div class="offcanvas offcanvas-end offcanvas-premium" tabindex="-1" id="menuLateral">
-        <div class="offcanvas-header border-bottom">
-            <h5 class="offcanvas-title fonte-impacto" id="menuLateralLabel">AFROLOGIA</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-            <ul class="navbar-nav flex-grow-1 pe-3 text-center fs-5">
-                <li class="nav-item m-2"><a class="nav-link" href="#sobre">Sobre</a></li>
-                <li class="nav-item m-2"><a class="nav-link" href="#livros">Livros</a></li>
-                <li class="nav-item m-2"><a class="nav-link" href="#poetas">Poetas</a></li>
-                <li class="nav-item m-2"><a class="nav-link" href="#contato">Contato</a></li>
-            </ul>
-        </div>
-    </div>
+    <!-- Logo centralizada -->
+    <a class="afro-fixed-logo m-0 scroll-link" href="#cp-home">
+        <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
+    </a>
 
     <main>
-        <section class="section-hero-bio">
-            <div class="hero-group-phot reveal">
-                <img src="afrologiahome.png" alt="Afrologia - Coletivo de Poetas" class="group-photo-img">
-                
-            </div>
-
-            <h1 class="hero-title-bio reveal">AFROLOGIA</h1>
-            
-            <p class="hero-tagline reveal">Poesia Marginal. Resistência. Transformação.</p>
-            
-            <p class="hero-copy reveal">Um coletivo de 5 poetas do Recife que usam as ruas, praças e slam como palco para a palavra que liberta. Afrologia é machado que quebra corrente.</p>
-            
-            <div id="frasesCarousel" class="carousel slide reveal carousel-bio" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active" data-bs-interval="3800">
-                        <p class="frase-bio">"Afrologia é machado<br>que quebra corrente."</p>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3800">
-                        <p class="frase-bio">"Afrologia é caneta<br>que assina alforria."</p>
-                    </div>
-                    <div class="carousel-item" data-bs-interval="3800">
-                        <p class="frase-bio">"Afrologia é cura<br>para a pandemia."</p>
+        <!-- SEÇÃO HERO -->
+        <section id="cp-home" class="cp-integration">
+            <!-- Camada de fundo para efeito Parallax via JS -->
+            <div class="cp-home-bg"></div>
+            <div class="cp-overlay"></div>
+            <div class="container position-relative" style="z-index: 2;">
+                <div class="row">
+                    <div class="col-xs-12 w-100 d-flex flex-column align-items-center">
+                        
+                        <!-- SEÇÃO AFROLOGIA BLOB -->
+                        <section id="hero-afrologia-blob" class="hero-blob-section reveal pt-5">
+                            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-labelledby="t" class="blob-svg">
+                                <image href="afrologiahome.jpg" width="200" height="200" preserveAspectRatio="xMidYMid slice" clip-path="url(#blobClip)"/>
+                                <clipPath id="blobClip">
+                                    <path d="M43.1,-68.5C56.2,-58.6,67.5,-47.3,72.3,-33.9C77.2,-20.5,75.5,-4.9,74.2,11.3C72.9,27.6,71.9,44.5,63.8,57.2C55.7,69.8,40.6,78.2,25.5,79.2C10.4,80.1,-4.7,73.6,-20.9,69.6C-37.1,65.5,-54.5,63.9,-66,54.8C-77.5,45.8,-83.2,29.3,-85.7,12.3C-88.3,-4.8,-87.7,-22.3,-79.6,-34.8C-71.5,-47.3,-55.8,-54.9,-41.3,-64.2C-26.7,-73.6,-13.4,-84.7,0.8,-86C15,-87.2,29.9,-78.5,43.1,-68.5Z" transform="translate(100 100)"/>
+                                </clipPath>
+                                <path id="blob-text-path" d="M43.1,-68.5C56.2,-58.6,67.5,-47.3,72.3,-33.9C77.2,-20.5,75.5,-4.9,74.2,11.3C72.9,27.6,71.9,44.5,63.8,57.2C55.7,69.8,40.6,78.2,25.5,79.2C10.4,80.1,-4.7,73.6,-20.9,69.6C-37.1,65.5,-54.5,63.9,-66,54.8C-77.5,45.8,-83.2,29.3,-85.7,12.3C-88.3,-4.8,-87.7,-22.3,-79.6,-34.8C-71.5,-47.3,-55.8,-54.9,-41.3,-64.2C-26.7,-73.6,-13.4,-84.7,0.8,-86C15,-87.2,29.9,-78.5,43.1,-68.5Z" transform="translate(100 100)" fill="none" stroke="none" pathLength="100"/>
+                                <text class="text-content-blob">
+                                    <textPath href="#blob-text-path" startOffset="0%">
+                                        RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECIFE • 
+                                        <animate attributeName="startOffset" from="0%" to="100%" dur="25s" repeatCount="indefinite" />
+                                    </textPath>
+                                    <textPath href="#blob-text-path" startOffset="100%">
+                                        RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECITAL AFROLOGIA • RECIFE • 
+                                        <animate attributeName="startOffset" from="-100%" to="0%" dur="25s" repeatCount="indefinite" />
+                                    </textPath>
+                                </text>
+                            </svg>
+                            
+                            <h4 class="cp-subtitle reveal">O Afrologia faz apologia ao consumo sem moderação de poesia. Axé ao AFROLOGIA.</h4>
+                            
+                            <a class="cp-tutorials-link mt-4 scroll-link reveal" href="#poetas" role="button">Conheça</a>
+                        </section>
                     </div>
                 </div>
-            </div>
-
-            <div class="container-botoes-bio reveal">
-                <a href="#poetas" class="btn-floating-arrow scroll-link">
-                    <span class="arrow-icon">↓</span>
-                </a>
             </div>
         </section>
 
-        <section id="poetas" class="section-poetas-bio">
-            <h2 class="section-title reveal">OS POETAS</h2>
-            <div class="poetas-container">
-                <!-- POETA 1: Lucas Marafa -->
-                <div class="poeta-bio-card reveal">
-                    <div class="instagram-profile-frame">
-                        <img src="marafa.png" alt="Lucas Marafa" class="poeta-img-bio">
-                    </div>
-                    <div class="poeta-info-bio">
-                        <h3 class="poet-username">@lucas.marafa</h3>
-                        <h2 class="poet-name">Lucas Marafa</h2>
-                        <p class="poet-bio">Poeta marginal. Slam nas ruas de Recife, Região Metropolitana.</p>
-                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
-                    </div>
-                </div>
+        <!-- SEÇÃO POETAS -->
+        <section id="poetas" class="section-poetas-gsap">
+            <h2 class="section-title reveal">POETAS MARGINAIS</h2>
+            
+            <div class="staggered-poetas-content">
+                <ul class="poetas-list">
+                    
+                    <!-- POETA 1 -->
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="marafa.png" alt="Lucas Marafa" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@lucas.marafa</h3>
+                            <h2 class="poeta-name">Lucas Marafa</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Poeta marginal. Slam nas ruas de Recife, Região Metropolitana. A voz que ecoa as vivências da cidade.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/lucas.marafa" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                <!-- POETA 2: Juan Falik -->
-                <div class="poeta-bio-card reveal">
-                    <div class="instagram-profile-frame">
-                        <img src="falik.png" alt="Juan Falik" class="poeta-img-bio">
-                    </div>
-                    <div class="poeta-info-bio">
-                        <h3 class="poet-username">@j.falik</h3>
-                        <h2 class="poet-name">Juan Falik</h2>
-                        <p class="poet-bio">Voz poética do Nordeste. Slam, rima e resistência.</p>
-                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
-                    </div>
-                </div>
+                    <!-- POETA 2 -->
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="falik.png" alt="Juan Falik" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@j.falik</h3>
+                            <h2 class="poeta-name">Juan Falik</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Voz poética do Nordeste. Slam, rima e resistência. Transformando o cotidiano em arte e protesto.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/j.falik" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                <!-- POETA 3: João Boca de Nego -->
-                <div class="poeta-bio-card reveal">
-                    <div class="instagram-profile-frame">
-                        <img src="boca.png" alt="João Boca de Nego" class="poeta-img-bio">
-                    </div>
-                    <div class="poeta-info-bio">
-                        <h3 class="poet-username">@joaobocadnego</h3>
-                        <h2 class="poet-name">João Boca de Nego</h2>
-                        <p class="poet-bio">Poesia marginal nas praças. Recife é meu palco.</p>
-                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
-                    </div>
-                </div>
+                    <!-- POETA 3 -->
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="boca.png" alt="João Boca de Nego" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@joaobocadnego</h3>
+                            <h2 class="poeta-name">João Boca de Nego</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Poesia marginal nas praças. Recife é meu palco. Levando a cultura das ruas para o centro das atenções.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/joaobocadnego" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                <!-- POETA 4: Chico Preto -->
-                <div class="poeta-bio-card reveal">
-                    <div class="instagram-profile-frame">
-                        <img src="chico.png" alt="Chico Preto" class="poeta-img-bio">
-                    </div>
-                    <div class="poeta-info-bio">
-                        <h3 class="poet-username">@chicopretozn</h3>
-                        <h2 class="poet-name">Chico Preto</h2>
-                        <p class="poet-bio">Poeta das ruas. Slam e poesia performática.</p>
-                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
-                    </div>
-                </div>
+                    <!-- POETA 4 -->
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="chico.png" alt="Chico Preto" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@chicopretozn</h3>
+                            <h2 class="poeta-name">Chico Preto</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Poeta das ruas. Slam e poesia performática. A força da rima construindo novas narrativas.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/chicopretozn" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
 
-                <!-- POETA 5: Mago de Bom -->
-                <div class="poeta-bio-card reveal">
-                    <div class="instagram-profile-frame">
-                        <img src="mago.png" alt="Mago de Bom" class="poeta-img-bio">
-                    </div>
-                    <div class="poeta-info-bio">
-                        <h3 class="poet-username">@magoderuim_</h3>
-                        <h2 class="poet-name">Mago de Ruim</h2>
-                        <p class="poet-bio">Afrologia é magia. Poesia como resistência.</p>
-                        <button type="button" class="btn-bio-mini">Saiba Mais →</button>
-                    </div>
-                </div>
+                    <!-- POETA 5 -->
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="mago.png" alt="Mago de Bom" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@magoderuim_</h3>
+                            <h2 class="poeta-name">Mago de Ruim</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Afrologia é magia. Poesia como resistência. Versos que quebram barreiras e criam pontes.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/magoderuim_" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
             </div>
         </section>
     </main>
@@ -144,26 +201,26 @@
     <footer class="footer-afrologia">
         <div class="footer-content">
             <div class="footer-section">
-                <a class="navbar-brand" href="#">
-                <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
-            </a>
+                <a class="navbar-brand scroll-link" href="#cp-home">
+                    <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
+                </a>
                 <h3 class="footer-title">AFROLOGIA</h3>
-                
             </div>
             <div class="footer-section">
                 <p class="footer-credit">Afrologia - Um coletivo de poetas do Recife</p>
-                
             </div>
         </div>
         <div class="footer-divider"></div>
         <div class="footer-bottom">
-            <p class="footer-link">© 2024 Todos os direitos reservados</p>
-                <p class="footer-creator">Desenvolvido por: <span>Luciano Fernandes</span></p>
+            <p class="footer-link">© 2026 Todos os direitos reservados</p>
+            <p class="footer-creator">Desenvolvido por: <span>Luciano F Vital</span></p>
         </div>
     </footer>
 
+    <!-- Scripts unificados -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/scrollreveal"></script>
     <script src="script.js"></script>
 </body>
 </html>

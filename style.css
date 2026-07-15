@@ -1,1289 +1,367 @@
 /* ============================================================
-   VARIÁVEIS DE COR E ATMOSFERA PRETO, BRANCO E MARROM (Tema Claro)
+   01. VARIÁVEIS E ESTILOS GLOBAIS
    ============================================================ */
 :root {
-    /* Cores do Tema Claro (Clarificado - 5 Tons Mais Claros) */
-    --cor-fundo-papeu: #faf8f6;     /* Fundo bem claro, quase branco com toque quente */
-    --cor-fundo-card-off-white: #ffffff; /* Branco puro para os cards */
-    --cor-texto-preto-profundo: #1a1a1a; /* Preto um pouco mais suave */
-    --cor-texto-marrom-terroso: #a0612d; /* Marrom mais claro e quente (5 tons acima) */
-    --cor-marrom-escuro: #8B4513; /* Marrom original para acentos */
-    --cor-marrom-claro: #c9956b; /* Marrom bem claro para destaques */
-    
-    /* Brilhos e Sombras Sofisticadas (Light Mode Moderno) */
-    --brilho-quente: rgba(160, 97, 45, 0.35); /* Marrom claro com transparência */
-    --sombra-premium-light: 0 8px 24px rgba(0,0,0,0.08); /* Sombra muito suave */
-    --sombra-profunda: 0 20px 50px rgba(160, 97, 45, 0.15); /* Sombra com toque marrom */
-    
-    /* Fontes */
+    --cor-fundo-papeu: #faf8f6;
+    --cor-fundo-card-off-white: #ffffff;
+    --cor-texto-preto-profundo: #1a1a1a;
+    --cor-texto-marrom-terroso: #a0612d;
+    --cor-marrom-escuro: #8B4513;
+    --cor-marrom-claro: #c9956b;
+    --sombra-premium-light: 0 8px 24px rgba(0,0,0,0.08);
+    --sombra-profunda: 0 20px 50px rgba(160, 97, 45, 0.15);
     --fonte-urban: 'Anton', sans-serif;
     --fonte-body: 'Inter', sans-serif;
+    --nav-timing: cubic-bezier(0.190, 1.000, 0.220, 1.000);
+    --nav-width-desktop: 35em;
+    --nav-width-mobile: 22em;
 }
 
-/* ============================================================
-   ESTILOS GLOBAIS E FUNDO TEXTURIZADO CLARO
-   ============================================================ */
+html {
+    scroll-behavior: smooth; /* ALTERADO: Scroll suave nativo implementado */
+}
+
 body {
-    background-color: var(--cor-fundo-papeu);
-    color: var(--cor-texto-preto-profundo);
-    font-family: var(--fonte-body);
-    overflow-x: hidden;
     position: relative;
-    background: linear-gradient(135deg, #faf8f6 0%, #f5f3f0 50%, #faf8f6 100%);
+    overflow-x: hidden;
     min-height: 100vh;
+    font-family: var(--fonte-body);
+    color: var(--cor-texto-preto-profundo);
+    background-color: var(--cor-fundo-papeu);
 }
 
-/* Fundo Dinâmico com Gradiente Animado e Formas */
 body::before {
-    content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-        45deg,
-        #faf8f6 0%,
-        #f0e8e0 20%,
-        #e8dcd0 40%,
-        #f5f3f0 60%,
-        #ffe8d6 80%,
-        #faf8f6 100%
-    );
+    top: 0; left: 0; z-index: -2;
+    width: 100%; height: 100%;
+    background: linear-gradient(45deg, #faf8f6 0%, #f0e8e0 20%, #e8dcd0 40%, #f5f3f0 60%, #ffe8d6 80%, #faf8f6 100%);
     background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    z-index: -2;
     pointer-events: none;
+    content: '';
+    animation: gradientShift 15s ease infinite;
 }
 
-/* Camada Decorativa com Formas */
 body::after {
-    content: '';
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; z-index: -1;
+    width: 100%; height: 100%;
     background-image: 
         radial-gradient(circle at 20% 50%, rgba(160, 97, 45, 0.08) 0%, transparent 50%),
         radial-gradient(circle at 80% 80%, rgba(192, 105, 60, 0.06) 0%, transparent 50%),
         radial-gradient(circle at 40% 30%, rgba(201, 149, 107, 0.07) 0%, transparent 50%);
     background-size: 100% 100%;
-    animation: shapePulse 20s ease-in-out infinite;
-    z-index: -1;
     pointer-events: none;
+    content: '';
+    animation: shapePulse 20s ease-in-out infinite;
 }
 
-@keyframes gradientShift {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+h1, h2, h3, h4, h5, h6 { font-family: var(--fonte-urban); }
+p { line-height: 1.7; }
+.fonte-impacto { font-family: var(--fonte-urban); font-weight: normal; text-transform: uppercase; letter-spacing: 0.2rem; }
+a { text-decoration: none; }
+
+/* ALTERADO: Implementação real da classe Reveal (Fade-in / Slide-up) */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 
-@keyframes shapePulse {
-    0%, 100% {
-        opacity: 0.5;
-    }
-    50% {
-        opacity: 0.8;
-    }
-}
-
-/* Tipografia Urbano Nitida */
-.fonte-impacto {
-    font-family: var(--fonte-urban);
-    text-transform: uppercase;
-    letter-spacing: 0.2rem;
-    font-weight: normal;
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* ============================================================
-   SEÇÃO HERO - ESTILO LINK NA BIO (Mobile First)
+   02. ANIMAÇÕES GLOBAIS
    ============================================================ */
-.section-hero-bio {
-    width: 100%;
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 2.5rem 1.2rem 3rem 1.2rem;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    position: relative;
-}
-
-/* FOTO DO GRUPO - Sales Page Style */
-.hero-group-photo {
-    position: relative;
-    width: 100%;
-    max-width: 420px;
-    aspect-ratio: 3 / 2;
-    margin-bottom: 2rem;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 
-        0 0 60px rgba(160, 97, 45, 0.25),
-        0 20px 60px rgba(139, 69, 19, 0.15),
-        0 0 0 1px rgba(160, 97, 45, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.group-photo-img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.hero-group-photo:hover .group-photo-img {
-    transform: scale(1.05);
-}
-
-.photo-overlay {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    background: rgba(160, 97, 45, 0.95);
-    color: white;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-family: 'Anton', sans-serif;
-    font-size: 0.85rem;
-    font-weight: 900;
-    letter-spacing: 0.1rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(160, 97, 45, 0.3);
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* HERO TITLE - Obra de Arte Lapidada */
-.hero-title-bio {
-    font-size: min(14rem, 18vw);
-    font-weight: 900;
-    margin: 0.5rem 0 1rem 0;
-    letter-spacing: -0.02em;
-    font-family: 'Anton', sans-serif;
-    text-transform: uppercase;
-    line-height: 1;
-    color: #000000;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    
-    /* Animação de Entrada */
-    animation: slideInDown 0.9s cubic-bezier(0.34, 1.56, 0.64, 1);
-    
-    /* Transform Suave */
-    transform: perspective(1200px);
-}
-
-.hero-title-bio:hover {
-    transform: perspective(1200px) translateY(-2px);
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-/* TAGLINE - Sales Copy Atrativa */
-.hero-tagline {
-    font-size: 1.3rem;
-    font-weight: 600;
-    color: var(--cor-texto-marrom-terroso);
-    margin: 0.5rem 0 1.2rem 0;
-    letter-spacing: 0.05rem;
-    text-transform: uppercase;
-    font-family: var(--fonte-body);
-    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
-}
-
-/* COPY - Texto Descritivo */
-.hero-copy {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    color: var(--cor-texto-preto-profundo);
-    margin: 0 0 2rem 0;
-    max-width: 380px;
-    font-weight: 400;
-    opacity: 0.95;
-    animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
-}
-
-@media (max-width: 768px) {
-    .hero-title-bio {
-        font-size: min(10rem, 16vw);
-        letter-spacing: -0.02em;
-    }
-    
-    .hero-group-photo {
-        max-width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-title-bio {
-        font-size: min(7rem, 15vw);
-        letter-spacing: -0.02em;
-    }
-    
-    .hero-tagline {
-        font-size: 1rem;
-    }
-    
-    .hero-copy {
-        font-size: 0.95rem;
-    }
-    
-    .btn-bio {
-        padding: 15px 28px;
-        font-size: 0.9rem;
-    }
-}
-
-/* CARROSSEL DE FRASES - Centralizado */
-.carousel-bio {
-    width: 100%;
-    margin: 0 0 1.5rem 0 !important;
-    padding: 0 !important;
-}
-
-.carousel-bio .carousel-inner {
-    background: transparent;
-    padding: 1rem 0;
-}
-
-.frase-bio {
-    font-size: 1rem;
-    font-weight: 400;
-    color: var(--cor-texto-marrom-terroso);
-    font-style: italic;
-    margin: 0;
-    line-height: 1.5;
-    letter-spacing: 0.3px;
-    text-align: center;
-    animation: fadeIn 0.8s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes shapePulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 0.8; } }
 
 /* ============================================================
-   NAVBAR PREMIUM E MENU HAMBÚRGUER (Moderno com Gradiente)
+   03. HEADER E MENU OFFCANVAS
    ============================================================ */
-.navbar-premium {
-    background: linear-gradient(135deg, #ffffff 0%, #faf8f6 50%, #f5f3f0 100%);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(160, 97, 45, 0.15);
-    padding: 0.8rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-}
+#afro-navcheck { position: fixed; z-index: -1; opacity: 0; }
+.visuallyhidden { position: absolute; overflow: hidden; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0; clip: rect(0 0 0 0); }
 
-.navbar-premium .navbar-brand {
-    margin-right: 1rem;
+.afro-fixed-logo {
+    position: fixed; top: 1rem; left: 50%; z-index: 1040;
+    transform: translateX(-50%);
 }
-
 .logo-premium {
-    max-height: 45px;
+    max-height: 55px;
     filter: drop-shadow(0 2px 6px rgba(160, 97, 45, 0.2));
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.navbar-premium:hover .logo-premium {
-    filter: drop-shadow(0 4px 12px rgba(160, 97, 45, 0.3));
+.afro-nav-label {
+    position: fixed; top: 0; left: 0; z-index: 1050;
+    margin: 0; padding: 0; background: none; border: none; cursor: pointer;
 }
 
-.navbar-premium .navbar-toggler {
-    border: 1px solid rgba(160, 97, 45, 0.3);
-    background: rgba(160, 97, 45, 0.1);
-    border-radius: 8px;
-    padding: 0.4rem 0.6rem;
-    transition: all 0.3s;
+.afro-nav-label::before {
+    position: fixed; top: 0; right: 0; bottom: 0; left: 0;
+    z-index: 1; pointer-events: none; content: '';
+    background-color: rgba(26, 26, 26, 0.6); opacity: 0;
+    transition: opacity .5s var(--nav-timing);
 }
 
-.navbar-premium .navbar-toggler:hover {
-    background: rgba(160, 97, 45, 0.2);
-    border-color: var(--cor-texto-marrom-terroso);
+.afro-nav-label .burger {
+    position: fixed; top: 1.2rem; left: 1.2rem; z-index: 3;
+    width: 2.2em; height: 2.2em; transition: opacity .5s var(--nav-timing);
 }
 
-.navbar-premium .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(160, 97, 45, 0.8)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+.afro-nav-label .burger::before,
+.afro-nav-label .burger .bar,
+.afro-nav-label .burger::after {
+    position: absolute; left: 0; display: block;
+    width: 100%; height: 10%; content: '';
+    background: #ffffff; /* ALTERADO: Inicia com a cor branca (Hero) */
+    border-radius: 2px;
+    transition: all .5s var(--nav-timing), background 0.3s ease;
 }
 
-.offcanvas-premium {
-    background: #a0612d !important;
-    box-shadow: -15px 0 50px rgba(160, 97, 45, 0.12);
+.afro-nav-label .burger .bar { top: 45%; }
+.afro-nav-label .burger::before { top: 0; transform-origin: top left; }
+.afro-nav-label .burger::after { bottom: 0; transform-origin: bottom left; }
+
+/* ALTERADO: Muda a cor do ícone do Menu ao rolar para fora do Hero */
+body.site-scrolled .afro-nav-label .burger::before,
+body.site-scrolled .afro-nav-label .burger .bar,
+body.site-scrolled .afro-nav-label .burger::after {
+    background: var(--cor-texto-preto-profundo);
 }
 
-.offcanvas-premium .offcanvas-header {
-    border-bottom: 2px solid rgba(160, 97, 45, 0.25) !important;
-    background: linear-gradient(90deg, rgba(160, 97, 45, 0.08) 0%, rgba(160, 97, 45, 0.02) 100%);
-    padding: 1rem 1.2rem;
+#afro-navcheck:focus + .afro-nav-label .burger,
+.afro-nav-label:hover .burger { opacity: .75; }
+
+.afro-nav-menu {
+    position: fixed; top: 0; bottom: 0; left: 0; z-index: 1045;
+    display: flex; flex-flow: column nowrap; justify-content: center; align-items: flex-start;
+    transform: translateX(-100%); will-change: transform; transition: transform .5s var(--nav-timing);
 }
 
-.offcanvas-premium .offcanvas-title {
-    letter-spacing: 1.5px;
-    font-size: 1.7rem;
-    color: white;
-    font-weight: 900;
-    text-transform: uppercase;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-.offcanvas-premium .btn-close {
-    color: white;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-    background-color: rgba(255, 255, 255, 0.15);
-    border-radius: 8px;
-}
-
-.offcanvas-premium .nav-link {
-    color: white !important;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    padding: 1rem 1.2rem;
-    border-radius: 10px;
-    margin: 0.6rem 0.8rem;
-    font-weight: 700;
-    font-size: 1rem;
-    border-left: 4px solid transparent;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-}
-
-.offcanvas-premium .nav-link:hover {
-    color: white !important;
+.afro-nav-menu::before {
+    position: absolute; top: 0; bottom: 0; left: 0; z-index: -1;
+    width: var(--nav-width-mobile);
     background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
-    transform: translateX(12px);
-    border-left: 4px solid var(--cor-marrom-claro);
-    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25);
-}
-
-/* HERO SECTION: AFROLOGIA (O Nome Imponente e Nitido) */
-.hero-title-premium-nitido {
-    font-size: calc(3.2rem + 3.5vw);
-    line-height: 1;
-    margin: 0;
-    
-    /* Gradient moderno com marrom */
-    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 50%, #734721 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: none;
-    filter: drop-shadow(0 2px 8px rgba(160, 97, 45, 0.2));
-    letter-spacing: 0.08rem;
-    animation: slideInDown 0.8s ease-out;
-}
-
-@keyframes floatBounce {
-    0%, 100% {
-        transform: translateY(0px);
-    }
-    50% {
-        transform: translateY(-15px);
-    }
-}
-
-@keyframes slideDownArrow {
-    0%, 100% {
-        opacity: 1;
-        transform: translateY(0px);
-    }
-    50% {
-        opacity: 0.5;
-        transform: translateY(8px);
-    }
-}
-
-@keyframes slideInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Carrossel de Frases (Classe removida - usar frase-bio) */
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* FOTO DESTAQUE - Removida (Não mais usada em hero) */
-
-/* INSTAGRAM PROFILE FRAME - Foto Circular Ultra-Compacta */
-.instagram-profile-frame {
-    position: relative;
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0;
-    
-    /* Degradê colorido na borda: 4 anéis marrom */
-    box-shadow: 
-        0 0 0 2px rgba(160, 97, 45, 0.6),
-        0 0 0 4px rgba(139, 69, 19, 0.5),
-        0 0 0 6px rgba(201, 149, 107, 0.4),
-        0 0 12px rgba(160, 97, 45, 0.3),
-        inset 0 1px 0 rgba(255, 255, 255, 0.5);
-    
-    background: linear-gradient(135deg, rgba(160, 97, 45, 0.08) 0%, rgba(139, 69, 19, 0.03) 100%);
-    border: none;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.instagram-profile-frame::before {
     content: '';
-    position: absolute;
+    transform: skewX(15deg) translateX(-100%); transform-origin: bottom left;
+    will-change: transform; transition: transform .5s var(--nav-timing);
+}
+@media(min-width: 40em) { .afro-nav-menu::before { width: var(--nav-width-desktop); } }
+
+.afro-nav-link {
+    margin: .5em 0; padding: .2em 2em;
+    font-family: var(--fonte-urban); font-size: 1.8em; font-weight: 700;
+    color: white; text-transform: uppercase; letter-spacing: 2px;
+    transform: translateX(-100%); transition: color .15s, transform .5s; transition-timing-function: var(--nav-timing);
+}
+.afro-nav-link:hover, .afro-nav-link:focus { color: var(--cor-marrom-claro); outline: none; }
+.afro-nav-link:nth-child(1) { transition-delay: 0s, 100ms; }
+.afro-nav-link:nth-child(2) { transition-delay: 0s, 150ms; }
+.afro-nav-link:nth-child(3) { transition-delay: 0s, 200ms; }
+
+/* Menu Aberto */
+#afro-navcheck:checked + .afro-nav-label::before { pointer-events: auto; opacity: 1; }
+/* ALTERADO: Ao abrir o menu, volta para a cor branca em destaque */
+#afro-navcheck:checked + .afro-nav-label .burger::before,
+#afro-navcheck:checked + .afro-nav-label .burger .bar,
+#afro-navcheck:checked + .afro-nav-label .burger::after { background: #ffffff !important; }
+
+#afro-navcheck:checked + .afro-nav-label .burger::before,
+#afro-navcheck:checked + .afro-nav-label .burger::after { width: 141.42%; }
+#afro-navcheck:checked + .afro-nav-label .burger::before { transform: rotate(45deg) translateY(-50%); }
+#afro-navcheck:checked + .afro-nav-label .burger::after { transform: rotate(-45deg) translateY(50%); }
+#afro-navcheck:checked + .afro-nav-label .burger .bar { transform: scale(0.1); }
+#afro-navcheck:checked ~ .afro-nav-menu { transform: translateX(0); }
+#afro-navcheck:checked ~ .afro-nav-menu::before { transform: skewX(15deg) translateX(0); }
+#afro-navcheck:checked ~ .afro-nav-menu .afro-nav-link { transform: translateX(0); }
+
+main, footer { transition: all .5s var(--nav-timing); will-change: transform, filter; }
+#afro-navcheck:checked ~ main, #afro-navcheck:checked ~ footer { filter: blur(2px); transform: translateX(3em); transform-origin: left center; }
+
+
+/* ============================================================
+   FUNDO DO HEADER NO SCROLL
+   ============================================================ */
+.header-fundo {
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 35% 35%, transparent 0%, rgba(160, 97, 45, 0.02) 100%);
-    z-index: 1;
-    border-radius: 50%;
-}
-
-.poeta-img-bio {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    filter: brightness(1) contrast(1.1) saturate(1.05);
+    height: 75px; /* Altura suficiente para cobrir a logo e o menu */
+    background-color: transparent;
+    z-index: 1030; /* Fica abaixo da logo (1040) e do menu (1050) */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    pointer-events: none; /* Para não bloquear cliques na página quando transparente */
 }
 
-.poeta-bio-card:hover .poeta-img-bio {
-    transform: scale(1.12);
-    filter: brightness(1.1) contrast(1.2) saturate(1.15);
-}
-
-/* CONTAINER DE BOTÕES - Estilo Link na Bio */
-.container-botoes-bio {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    margin-top: 3rem;
-    padding-bottom: 2rem;
-}
-
-.btn-floating-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 70px;
-    height: 70px;
-    border-radius: 50%;
-    background: rgba(160, 97, 45, 0.12);
-    border: 2.5px solid rgba(160, 97, 45, 0.3);
-    text-decoration: none;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    cursor: pointer;
-    backdrop-filter: blur(10px);
-    animation: floatBounce 3s ease-in-out infinite;
-}
-
-.btn-floating-arrow:hover {
-    background: rgba(160, 97, 45, 0.25);
-    border-color: rgba(160, 97, 45, 0.6);
-    transform: scale(1.1);
-    box-shadow: 0 8px 30px rgba(160, 97, 45, 0.2);
-}
-
-.arrow-icon {
-    font-size: 2rem;
-    color: #a0612d;
-    font-weight: bold;
-    line-height: 1;
-    animation: slideDownArrow 1.5s ease-in-out infinite;
-}
-
-.btn-bio {
-    display: block;
-    padding: 18px 36px;
-    border-radius: 36px;
-    font-family: var(--fonte-urban);
-    text-transform: uppercase;
-    font-size: 1rem;
-    letter-spacing: 1.2px;
-    text-decoration: none;
-    text-align: center;
-    transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-    border: none;
-    cursor: pointer;
-    font-weight: 800;
-    width: 100%;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-bio::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.6s, height 0.6s;
-}
-
-.btn-bio:active::after {
-    width: 300px;
-    height: 300px;
-}
-
-.btn-bio-primary {
-    background: linear-gradient(135deg, #a0612d 0%, #8B4513 50%, #6b3410 100%);
-    color: white;
-    box-shadow: 
-        0 12px 32px rgba(160, 97, 45, 0.35),
-        0 0 20px rgba(160, 97, 45, 0.15);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-bio-primary::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.25), transparent);
-    transition: left 0.7s ease;
-    z-index: 1;
-}
-
-.btn-bio-primary:hover::before {
-    left: 100%;
-}
-
-.btn-bio-primary:hover {
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 
-        0 20px 60px rgba(160, 97, 45, 0.55),
-        0 0 40px rgba(160, 97, 45, 0.25),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    color: white;
-    text-decoration: none;
-    letter-spacing: 1.5px;
-}
-
-.btn-bio-secondary {
-    background-color: rgba(255, 255, 255, 0.95);
-    color: var(--cor-texto-marrom-terroso);
-    border: 2.5px solid var(--cor-texto-marrom-terroso);
-    box-shadow: 0 12px 32px rgba(160, 97, 45, 0.2);
-}
-
-.btn-bio-secondary:hover {
-    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
-    color: white;
-    transform: translateY(-6px) scale(1.05);
-    box-shadow: 
-        0 20px 55px rgba(160, 97, 45, 0.45),
-        0 0 30px rgba(160, 97, 45, 0.2),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    text-decoration: none;
-    border-color: transparent;
-    letter-spacing: 1.5px;
-}
-
-/* CARD POETA - Layout Vertical Compacto (Foto Esquerda + Info Coluna + Botão Embaixo) */
-.poeta-bio-card {
-    background: #fff;
-    border: 1px solid rgba(160, 97, 45, 0.12);
-    border-radius: 14px;
-    padding: 0.8rem;
-    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    width: 100%;
-    max-width: 300px;
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    grid-template-rows: auto auto;
-    gap: 0.7rem 0.6rem;
-}
-
-.poeta-bio-card:hover {
-    box-shadow: 0 12px 40px rgba(160, 97, 45, 0.2);
-    transform: translateY(-6px);
-    border-color: var(--cor-texto-marrom-terroso);
-    background: linear-gradient(135deg, #ffffff 0%, rgba(160, 97, 45, 0.03) 100%);
-}
-
-/* Foto ocupa primeira coluna, todas as linhas */
-.poeta-bio-card .instagram-profile-frame {
-    grid-column: 1;
-    grid-row: 1 / 3;
-}
-
-/* Info ocupa segunda coluna, primeira e segunda linhas */
-.poeta-info-bio {
-    grid-column: 2;
-    grid-row: 1;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 0.2rem;
-}
-
-/* Botão ocupa toda a largura na primeira coluna, última linha */
-.poeta-bio-card .btn-bio-mini {
-    grid-column: 1 / 3;
-    grid-row: 2;
-    width: 100%;
-    margin-top: 0;
-    padding: 7px 10px;
-}
-
-.poet-username {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--cor-texto-marrom-terroso);
-    margin: 0;
-    letter-spacing: 0.3px;
-    font-family: var(--fonte-body);
-    text-transform: uppercase;
-}
-
-.poet-name {
-    font-size: 0.92rem;
-    font-weight: 800;
-    margin: 0;
-    color: var(--cor-texto-preto-profundo);
-    font-family: var(--fonte-urban);
-    letter-spacing: 0.02rem;
-    line-height: 1.05;
-}
-
-.poet-bio {
-    font-size: 0.73rem;
-    color: #888;
-    margin: 0;
-    line-height: 1.2;
-    font-weight: 400;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-}
-
-/* BOTÃO MINI - Saiba Mais Ultra-Compacto */
-.btn-bio-mini {
-    width: 100%;
-    padding: 7px 10px;
-    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-family: var(--fonte-body);
-    font-size: 0.65rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 3px 10px rgba(160, 97, 45, 0.2);
-    letter-spacing: 0.2px;
-    text-transform: uppercase;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.btn-bio-mini:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.35);
-    color: white;
-    text-decoration: none;
-}
-
-.btn-bio-mini:active {
-    transform: translateY(0);
-}
-
-/* Título da Seção (A Linha Marrom) */
-.title-underlined-marrom {
-    color: #000;
-    position: relative;
-    display: inline-block;
-}
-
-.title-underlined-marrom::after {
-    content: '';
-    position: absolute;
-    bottom: -10px; left: 25%;
-    width: 50%; height: 4px;
-    background-color: var(--cor-texto-marrom-terroso);
-    border-radius: 2px;
-}
-
-/* BOTÕES PREMIUM (Tema Claro - Modernizado) */
-
-/* Botão Marrom Premium */
-.btn-premium-marrom-outline {
-    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
-    color: white;
-    border: none;
-    border-radius: 30px;
-    font-family: var(--fonte-urban);
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    padding: 14px 28px;
-    letter-spacing: 1.2px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    text-shadow: none;
-    box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-premium-marrom-outline::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    transition: left 0.5s;
-}
-
-.btn-premium-marrom-outline:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(160, 97, 45, 0.4);
-}
-
-.btn-premium-marrom-outline:hover::before {
-    left: 100%;
-}
-
-/* Botão Preto Moderno */
-.btn-premium-preto-outline {
-    background-color: #1a1a1a;
-    color: #fff;
-    border: 1px solid #333;
-    border-radius: 30px;
-    font-family: var(--fonte-urban);
-    text-transform: uppercase;
-    font-size: 0.85rem;
-    padding: 14px 28px;
-    letter-spacing: 1.2px;
-    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.btn-premium-preto-outline:hover {
-    background-color: #000;
-    border-color: var(--cor-texto-marrom-terroso);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-}
-
-/* Botão Preenchido Marrom */
-.btn-premium-marrom {
-    background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
-    color: white !important;
-    border: none;
-    border-radius: 25px;
-    font-family: var(--fonte-urban);
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    padding: 12px 24px;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-    box-shadow: 0 6px 15px rgba(160, 97, 45, 0.2);
-}
-
-.btn-premium-marrom:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 25px rgba(160, 97, 45, 0.35);
-}
-
-/* RESPONSIVIDADE - Link na Bio Mobile */
-@media (max-width: 480px) {
-    .section-hero-bio {
-        padding: 1rem 0.8rem;
-    }
-
-    .hero-title-bio {
-        font-size: 2rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .frase-bio {
-        font-size: 0.9rem;
-    }
-
-    .container-botoes-bio {
-        gap: 0.6rem;
-        margin-top: 1rem;
-    }
-
-    .btn-bio {
-        padding: 12px 20px;
-        font-size: 0.8rem;
-    }
-
-    .poetas-container {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        padding: 0 0.5rem;
-    }
-
-    .poet-name {
-        font-size: 1.1rem;
-    }
-
-    .poet-bio {
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .section-hero-bio {
-        max-width: 100%;
-    }
-
-    .poetas-container {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-}
-
-@media (min-width: 769px) {
-    .poetas-container {
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    }
+/* Quando o JS detectar a saída da seção Hero */
+body.site-scrolled .header-fundo {
+    background-color: #ffffff; /* Fundo branco, mas você pode usar var(--cor-fundo-papeu) */
+    box-shadow: var(--sombra-premium-light); /* Adiciona uma sombra elegante */
+    pointer-events: auto;
 }
 
 /* ============================================================
-   ANIMAÇÕES REVEAL - ScrollReveal Otimizado
+   04. HERO SECTION (CP-HOME & BLOB)
    ============================================================ */
-.reveal {
-    opacity: 1;
+#cp-home {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; height: 100vh; min-height: 500px;
+    /* Removido background fixo aqui. Migrado para a div .cp-home-bg */
 }
 
-/* ============================================================
-   SEÇÃO DE POETAS - Melhorada
-   ============================================================ */
-#poetas {
-    background: linear-gradient(135deg, rgba(245, 243, 240, 0.7) 0%, rgba(250, 248, 246, 0.7) 100%);
-    padding: 4rem 0;
-    border-top: 1px solid rgba(160, 97, 45, 0.1);
+/* ALTERADO: Nova div para o fundo receber Parallax do JS corretamente */
+.cp-home-bg {
+    position: absolute; top: 0; left: 0; width: 100%; height: 110%;
+    background-image: url('background-mobile.jpg'); 
+    background-size: cover; background-position: center top;
+    z-index: 0; will-change: transform;
 }
 
-/* ============================================================
-   TIPOGRAFIA MELHORADA
-   ============================================================ */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--fonte-urban);
-    color: var(--cor-texto-preto-profundo);
+.cp-overlay {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
+    background: radial-gradient(circle, transparent 20%, rgba(0,0,0,0.7) 100%);
+    background-color: rgba(0,0,0,0.3);
 }
 
-p {
-    line-height: 1.7;
-    color: var(--cor-texto-preto-profundo);
+.hero-blob-section {
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    position: relative; z-index: 1; width: 100%; min-height: 85vh; padding: 2rem 1.2rem;
 }
 
-.text-muted {
-    color: #999 !important;
-    font-weight: 300;
-    letter-spacing: 0.5px;
+.blob-svg {
+    overflow: visible; width: 90vw; max-width: 550px; max-height: 70vh; aspect-ratio: 1/1; margin-bottom: 2rem;
 }
+.blob-svg #blobClip { transform-origin: center; transition: ease-out transform 0.6s; }
+.blob-svg:hover #blobClip { transform: scale(1.08) translate(0%, 0%); }
 
-/* ============================================================
-   EFETO DE LINK NO MENU
-   ============================================================ */
-.nav-link {
-    position: relative;
-    overflow: hidden;
+.text-content-blob {
+    font-family: var(--fonte-body), system-ui, sans-serif; font-weight: 700; font-size: 4.8px; 
+    letter-spacing: 0.8px; text-transform: uppercase; fill: var(--cor-texto-preto-profundo);
+    mix-blend-mode: normal; transition: ease fill 0.5s;
 }
+.blob-svg:hover .text-content-blob { fill: var(--cor-texto-marrom-terroso); }
 
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: var(--cor-texto-marrom-terroso);
-    transition: left 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+.cp-title { margin-bottom: 0.5rem; font-size: clamp(2.5rem, 6vw, 4.5rem); text-align: center; letter-spacing: 4px; color: #ffffff; text-shadow: 0px 4px 20px rgba(0,0,0,0.8); }
+.cp-subtitle { font-family: var(--fonte-body); font-size: clamp(14px, 2vw, 18px); font-weight: 600; text-align: center; text-transform: uppercase; letter-spacing: 2px; color: #ffffff; text-shadow: 0px 2px 10px rgba(0,0,0,0.8); }
+
+.cp-tutorials-link {
+    display: inline-block; padding: 15px 40px; font-size: 0.875rem; font-weight: 600; text-align: center;
+    text-transform: uppercase; letter-spacing: 2px; color: var(--cor-marrom-claro);
+    border: 2px solid var(--cor-marrom-claro); border-radius: 4px; backdrop-filter: blur(5px); transition: all 0.3s ease;
 }
-
-.nav-link:hover::after {
-    left: 0%;
-}
-
-/* ============================================================
-   OFFCANVAS MENU MELHORADO
-   ============================================================ */
-.offcanvas {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%) !important;
-    box-shadow: -10px 0 40px rgba(0,0,0,0.3);
-}
-
-.offcanvas-title {
-    letter-spacing: 1px;
-    font-size: 1.5rem;
-}
-
-/* ============================================================
-   CONTAINER E GRID - Responsividade Premium
-   ============================================================ */
-@media (max-width: 768px) {
-    .section-hero {
-        min-height: 80vh;
-        padding-top: 1rem;
-    }
-
-    .hero-title-premium-nitido {
-        font-size: calc(2rem + 3vw);
-    }
-
-    .container-botoes {
-        gap: 0.5rem;
-    }
-
-    .btn-premium-marrom-outline,
-    .btn-premium-preto-outline {
-        padding: 12px 20px;
-        font-size: 0.75rem;
-    }
-
-    .poeta-card-balao {
-        max-width: 100%;
-    }
-}
+.cp-tutorials-link:hover { color: #ffffff; background: var(--cor-texto-marrom-terroso); border-color: var(--cor-texto-marrom-terroso); box-shadow: 0 6px 12px -4px rgba(0,0,0,0.5); }
 
 @media (max-width: 480px) {
-    .hero-title-premium-nitido {
-        font-size: calc(1.8rem + 2.5vw);
-    }
-
-    .btn-premium-marrom-outline,
-    .btn-premium-preto-outline {
-        padding: 10px 16px;
-        font-size: 0.7rem;
-    }
-
-    .poeta-card-balao {
-        padding: 1.5rem 1rem;
-    }
+    .blob-svg { width: 95vw; max-width: 350px; }
+    .hero-blob-section { min-height: 70vh; padding: 1rem; }
 }
 
 /* ============================================================
-   SMOOTH SCROLL BEHAVIOR
+   05. SEÇÃO POETAS (GSAP FLIP)
    ============================================================ */
-html {
-    scroll-behavior: smooth;
-}
-
-/* ============================================================
-   FOCUS STATES - Acessibilidade
-   ============================================================ */
-button:focus-visible,
-a:focus-visible {
-    outline: 2px solid var(--cor-texto-marrom-terroso);
-    outline-offset: 2px;
-}
-
-/* ============================================================
-   SEÇÃO POETAS - ESTILO BIO DO INSTAGRAM
-   ============================================================ */
-.section-poetas-bio {
+.section-poetas-gsap {
+    position: relative; padding: 5rem 1.5rem;
     background: linear-gradient(135deg, rgba(250, 248, 246, 0.95) 0%, rgba(245, 243, 240, 0.95) 100%);
-    padding: 4rem 1.5rem;
-    min-height: auto;
     border-top: 1px solid rgba(160, 97, 45, 0.1);
-    position: relative;
 }
 
 .section-title {
-    font-size: 2.2rem;
-    font-weight: 900;
-    text-align: center;
-    margin-bottom: 3rem;
-    color: var(--cor-texto-preto-profundo);
-    font-family: var(--fonte-urban);
-    letter-spacing: 0.1rem;
-    position: relative;
-    padding-bottom: 1.5rem;
+    position: relative; margin-bottom: 3rem; padding-bottom: 1.5rem;
+    font-family: var(--fonte-urban); font-size: 2.2rem; font-weight: 900;
+    text-align: center; letter-spacing: 0.1rem;
 }
-
 .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 120px;
-    height: 4px;
-    background: linear-gradient(90deg, transparent 0%, var(--cor-texto-marrom-terroso) 20%, var(--cor-texto-marrom-terroso) 80%, transparent 100%);
-    border-radius: 2px;
+    position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 4px; background: linear-gradient(90deg, transparent 0%, var(--cor-texto-marrom-terroso) 20%, var(--cor-texto-marrom-terroso) 80%, transparent 100%); border-radius: 2px; content: '';
 }
 
-.section-poetas-bio::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100px;
-    background: linear-gradient(180deg, rgba(160, 97, 45, 0.02) 0%, transparent 100%);
-    pointer-events: none;
-}
+.staggered-poetas-content { position: relative; width: 100%; max-width: 650px; margin: 0 auto; min-height: 50vh; }
+.poetas-list { display: flex; flex-direction: column; position: relative; margin: 0; padding: 0; list-style-type: none; }
+.poetas-list li + li { margin-top: 1.2rem; }
 
-.poetas-container {
-    width: 100%;
-    max-width: 1300px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
-    padding: 0;
+.poeta-list-item {
+    display: flex; flex-direction: row; align-items: center; position: relative; overflow: hidden;
+    padding: 1.2rem 1.5rem; background-color: var(--cor-fundo-card-off-white);
+    border: 1px solid rgba(160, 97, 45, 0.12); border-radius: 16px; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    cursor: pointer; -webkit-tap-highlight-color: transparent;
+    /* ALTERADO: Tempo de transição reduzido para 0.2s para ganho de velocidade e resposta imediata */
+    transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
+.poeta-list-item:hover { box-shadow: 0 12px 30px rgba(160, 97, 45, 0.15); border-color: rgba(160, 97, 45, 0.4); transform: translateY(-2px); }
 
-@media (max-width: 1024px) {
-    .poetas-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 1.8rem;
-    }
+.poeta-avatar-wrapper {
+    flex-shrink: 0; width: 4.5rem; height: 4.5rem; margin-right: 1.5rem; padding: 3px;
+    border-radius: 50%; background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%); box-shadow: 0 4px 10px rgba(160, 97, 45, 0.2);
 }
+.poeta-avatar-img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 2px solid white; }
+.poeta-header-info { display: flex; flex-direction: column; justify-content: center; flex-grow: 1; }
+.poeta-username { margin: 0 0 0.2rem 0; font-family: var(--fonte-body); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--cor-texto-marrom-terroso); }
+.poeta-name { margin: 0; font-family: var(--fonte-urban); font-size: 1.4rem; line-height: 1.1; letter-spacing: 0.5px; }
 
-@media (max-width: 768px) {
-    .section-poetas-bio {
-        padding: 3rem 1rem;
-    }
-
-    .poetas-container {
-        grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-        gap: 1.4rem;
-    }
-    
-    .poeta-bio-card {
-        grid-template-columns: 90px 1fr;
-        padding: 0.7rem;
-    }
-    
-    .instagram-profile-frame {
-        width: 90px;
-        height: 90px;
-    }
+.poeta-list-item.expanded {
+    flex-direction: column; padding: 2.5rem 2rem;
+    background: linear-gradient(135deg, #ffffff 0%, rgba(160, 97, 45, 0.04) 100%); box-shadow: 0 20px 50px rgba(160, 97, 45, 0.15); border-color: var(--cor-texto-marrom-terroso); transform: none; 
 }
+.poeta-list-item.expanded .poeta-avatar-wrapper { width: 7.5rem; height: 7.5rem; margin-right: 0; margin-bottom: 1.5rem; }
+.poeta-list-item.expanded .poeta-header-info { align-items: center; text-align: center; }
+.poeta-list-item.expanded .poeta-name { font-size: 2rem; }
+
+.poeta-additional-content {
+    display: none; width: 100%; margin-top: 1.5rem; text-align: center;
+    opacity: 0; visibility: hidden; transform: translateY(12px); pointer-events: none;
+}
+.poeta-list-item.expanded .poeta-additional-content {
+    display: block; visibility: visible; opacity: 1; transform: translateY(0); pointer-events: auto;
+}
+.poeta-bio-text { margin-bottom: 1.8rem; font-size: 0.95rem; font-weight: 400; line-height: 1.7; }
+.poeta-actions { display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+
+.btn-conheca-poeta {
+    display: inline-block; padding: 14px 32px; font-family: var(--fonte-urban); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: white !important; background: linear-gradient(135deg, var(--cor-texto-marrom-terroso) 0%, var(--cor-marrom-escuro) 100%);
+    border-radius: 30px; box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25); transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+}
+.btn-conheca-poeta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(160, 97, 45, 0.4); }
+
+.poeta-socials { display: flex; gap: 1rem; justify-content: center; }
+.social-icon { display: flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(160, 97, 45, 0.08); color: var(--cor-texto-marrom-terroso); border: 1px solid rgba(160, 97, 45, 0.2); transition: all 0.3s ease; }
+.social-icon:hover { background: var(--cor-texto-marrom-terroso); color: white; border-color: transparent; transform: scale(1.1); }
 
 @media (max-width: 480px) {
-    .section-poetas-bio {
-        padding: 2rem 0.8rem;
-    }
-
-    .poetas-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-
-    .poeta-bio-card {
-        max-width: 100%;
-        grid-template-columns: 85px 1fr;
-        padding: 0.6rem;
-    }
-    
-    .instagram-profile-frame {
-        width: 85px;
-        height: 85px;
-    }
-    
-    .poet-name {
-        font-size: 0.88rem;
-    }
-    
-    .poet-bio {
-        font-size: 0.68rem;
-    }
-    
-    .btn-bio-mini {
-        font-size: 0.62rem;
-        padding: 6px 8px;
-    }
-}
-
-/* Responsividade para Botão Flutuante */
-@media (max-width: 768px) {
-    .btn-floating-arrow {
-        width: 65px;
-        height: 65px;
-    }
-    
-    .arrow-icon {
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .btn-floating-arrow {
-        width: 60px;
-        height: 60px;
-    }
-    
-    .arrow-icon {
-        font-size: 1.6rem;
-    }
+    .poeta-list-item { padding: 1rem; }
+    .poeta-avatar-wrapper { width: 3.5rem; height: 3.5rem; margin-right: 1rem; }
+    .poeta-name { font-size: 1.2rem; }
 }
 
 /* ============================================================
-   FOOTER - ESTILO ELEGANTE E MODERNO
+   06. FOOTER
    ============================================================ */
-.footer-afrologia {
-    background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
-    color: #ffffff;
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    margin-top: 3rem;
-    position: relative;
-    overflow: hidden;
-}
+.footer-afrologia { position: relative; overflow: hidden; margin-top: 3rem; padding: 2rem 1.5rem 1.5rem 1.5rem; background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%); color: #ffffff; }
+.footer-afrologia::before { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent 0%, #a0612d 20%, #a0612d 80%, transparent 100%); content: ''; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; gap: 2rem; max-width: 1200px; margin: 0 auto 0.8rem auto; }
+.footer-section { display: flex; flex-direction: row; align-items: center; gap: 0.5rem; }
+.footer-title { font-family: 'Anton', sans-serif; font-size: 0.95rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05rem; color: #a0612d; }
+.footer-divider { width: 60px; height: 2px; margin: 0.8rem auto; background: #a0612d; border-radius: 1px; }
+.footer-bottom { padding-top: 0.8rem; text-align: center; border-top: 1px solid rgba(160, 97, 45, 0.15); }
+.footer-credit { margin: 0; font-size: 0.7rem; font-style: italic; letter-spacing: 0.2px; color: rgba(255, 255, 255, 0.5); }
+.footer-link { margin: 0; font-size: 0.75rem; font-weight: 400; letter-spacing: 0.3px; color: rgba(255, 255, 255, 0.7); }
+.footer-creator { margin: 0; font-size: 0.75rem; font-weight: 400; color: rgba(255, 255, 255, 0.7); }
+.footer-creator span { font-weight: 600; letter-spacing: 0.3px; color: #a0612d; }
 
-.footer-afrologia::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent 0%, #a0612d 20%, #a0612d 80%, transparent 100%);
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 2rem;
-    margin-bottom: 0.8rem;
-}
-
-.footer-section {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
-    align-items: center;
-}
-
-.footer-title {
-    font-size: 0.95rem;
-    font-weight: 900;
-    font-family: 'Anton', sans-serif;
-    letter-spacing: 0.05rem;
-    color: #a0612d;
-    text-transform: uppercase;
-}
-
-.footer-description {
-    font-size: 0.75rem;
-    line-height: 1.3;
-    color: rgba(255, 255, 255, 0.6);
-    font-weight: 300;
-}
-
-.footer-link {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
-    font-weight: 400;
-    letter-spacing: 0.3px;
-    margin: 0;
-}
-
-.footer-creator {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
-    font-weight: 400;
-}
-
-.footer-creator span {
-    color: #a0612d;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-}
-
-.footer-divider {
-    width: 60px;
-    height: 2px;
-    background: #a0612d;
-    margin: 0.8rem auto;
-    border-radius: 1px;
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 0.8rem;
-    border-top: 1px solid rgba(160, 97, 45, 0.15);
-}
-
-.footer-credit {
-    font-size: 0.7rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin: 0;
-    font-style: italic;
-    letter-spacing: 0.2px;
-}
-
-/* Responsividade Footer */
 @media (max-width: 768px) {
-    .footer-afrologia {
-        padding: 1.5rem 1rem 1rem 1rem;
-        margin-top: 2rem;
-    }
+    .footer-afrologia { margin-top: 2rem; padding: 1.5rem 1rem 1rem 1rem; }
+    .footer-content { flex-direction: column; text-align: center; gap: 1rem; }
+    .footer-section { flex-direction: column; gap: 0.3rem; }
+    .footer-title { font-size: 0.85rem; }
+    .footer-divider { margin: 0.5rem auto; }
+}
 
-    .footer-content {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-    }
 
-    .footer-section {
-        flex-direction: column;
-        gap: 0.3rem;
-    }
-
-    .footer-title {
-        font-size: 0.85rem;
-    }
-
-    .footer-divider {
-        margin: 0.5rem auto;
-    }
+/* Transforma a imagem da logo em branca quando o menu (checkbox) está marcado/aberto */
+#afro-navcheck:checked ~ .afro-fixed-logo .logo-premium {
+    filter: brightness(0) invert(1);
 }
