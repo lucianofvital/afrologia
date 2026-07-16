@@ -3,13 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Básico & Indexação -->
     <title>Afrologia - Coletivo de Poesia Marginal - Recife</title>
-    <meta name="description" content="Afrologia: Coletivo de 5 poetas marginais da Região Metropolitana do Recife. Slam nas ruas, praças e praias.">
+    <meta name="description" content="Afrologia: Coletivo de 5 poetas marginais da Região Metropolitana do Recife. Slam nas ruas, praças e praias. Consumo sem moderação de poesia.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Afrologia">
+    <meta name="keywords" content="afrologia, coletivo de poesia, poesia marginal, recife, slam, poetas de recife, zine afrologia, cultura urbana, lucas marafa, juan falik, joao boca de nego, chico preto, mago de ruim">
+    
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn (Card de Compartilhamento) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Afrologia - Coletivo de Poesia Marginal">
+    <meta property="og:description" content="Coletivo de 5 poetas marginais da Região Metropolitana do Recife. Slam nas ruas, praças e praias. Conheça nosso trabalho e o Zine Afrologia.">
+    <!-- Substitua pelo domínio oficial onde o site será hospedado -->
+    <meta property="og:url" content="https://seusite.com.br/afrologia/"> 
+
+    <!-- Link de imagem otimizado no tamanho padrão (1200x630) -->
+    <!-- Sugestão: Crie uma imagem com as dimensões exatas usando a 'afro-home.jpg' ou a arte da capa do zine -->
+    <meta property="og:image" content="https://seusite.com.br/afro-home.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Descrição da imagem (Acessibilidade e SEO) -->
+    <meta property="og:image:alt" content="Recital Afrologia - Coletivo de Poesia Marginal em Recife">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Afrologia - Coletivo de Poesia Marginal">
+    <meta name="twitter:description" content="Coletivo de 5 poetas marginais da Região Metropolitana do Recife. A voz que ecoa as vivências da cidade.">
+    <meta name="twitter:image" content="https://seusite.com.br/afro-home.jpg">
+
+    <!-- Configurações de Aparência do Navegador (PWA & Dispositivos Móveis) -->
+    <!-- Utilizando um tom escuro/preto para combinar com a estética de poesia marginal -->
+    <meta name="theme-color" content="#000000"> 
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+
+    <!-- Favicons & Touch Icons (Premium & Completos) -->
+    <!-- Utilizando a logo 'afro.png' referenciada no HTML -->
+    <link rel="icon" type="image/png" sizes="32x32" href="afro.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="afro.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="afro.png">
+    <link rel="shortcut icon" href="afro.png">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#afro-menu">
+
+    <body class="loading" data-bs-spy="scroll" data-bs-target="#afro-menu">
+
+    <!-- PRELOADER (TELA DE CARREGAMENTO) -->
+    <div id="afro-preloader">
+        <img src="afro-pre.png" alt="Carregando Afrologia" class="preloader-logo">
+    </div>
+
+    <div class="header-fundo"></div>
+    <!-- O resto do seu código continua normal abaixo... -->
+
 
     <div class="header-fundo"></div>
     
@@ -28,13 +82,14 @@
     <!-- Fundo e Links do Menu lateral -->
     <nav id="afro-menu" class="afro-nav-menu">
         <a href="#cp-home" class="afro-nav-link scroll-link">Início</a>
-        <a href="#hero-afrologia-blob" class="afro-nav-link scroll-link">Afrologia</a>
         <a href="#poetas" class="afro-nav-link scroll-link">Poetas</a>
+        <a href="#zine" class="afro-nav-link scroll-link">Zine</a>
     </nav>
+
 
     <!-- Logo centralizada -->
     <a class="afro-fixed-logo m-0 scroll-link" href="#cp-home">
-        <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
+        <img src="afro-header.png" alt="Logo Afrologia" class="logo-premium">
     </a>
 
     <main>
@@ -152,28 +207,6 @@
                     <!-- POETA 4 -->
                     <li class="poeta-list-item reveal">
                         <div class="poeta-avatar-wrapper">
-                            <img src="chico.png" alt="Chico Preto" class="poeta-avatar-img">
-                        </div>
-                        <div class="poeta-header-info">
-                            <h3 class="poeta-username">@chicopretozn</h3>
-                            <h2 class="poeta-name">Chico Preto</h2>
-                        </div>
-                        <div class="poeta-additional-content">
-                            <p class="poeta-bio-text">Poeta das ruas. Slam e poesia performática. A força da rima construindo novas narrativas.</p>
-                            <div class="poeta-actions">
-                                <a href="https://instagram.com/chicopretozn" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
-                                <div class="poeta-socials">
-                                    <a href="#" class="social-icon" aria-label="Instagram">
-                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-
-                    <!-- POETA 5 -->
-                    <li class="poeta-list-item reveal">
-                        <div class="poeta-avatar-wrapper">
                             <img src="mago.png" alt="Mago de Bom" class="poeta-avatar-img">
                         </div>
                         <div class="poeta-header-info">
@@ -193,34 +226,252 @@
                         </div>
                     </li>
 
+                    <!-- POETA 5 -->
+                    
+                    <li class="poeta-list-item reveal">
+                        <div class="poeta-avatar-wrapper">
+                            <img src="chico.png" alt="Chico Preto" class="poeta-avatar-img">
+                        </div>
+                        <div class="poeta-header-info">
+                            <h3 class="poeta-username">@chicopretozn</h3>
+                            <h2 class="poeta-name">Chico Preto</h2>
+                        </div>
+                        <div class="poeta-additional-content">
+                            <p class="poeta-bio-text">Poeta das ruas. Slam e poesia performática. A força da rima construindo novas narrativas.</p>
+                            <div class="poeta-actions">
+                                <a href="https://instagram.com/chicopretozn" target="_blank" class="btn-conheca-poeta">Conheça o Poeta</a>
+                                <div class="poeta-socials">
+                                    <a href="#" class="social-icon" aria-label="Instagram">
+                                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
                 </ul>
             </div>
         </section>
+
+        <!-- SEÇÃO ZINE AFROLOGIA (3D) -->
+<section class="afro-zine-section" id="zine">
+
+    <div class="afro-zine-container">
+
+        <div class="afro-zine-text">
+
+            <span class="afro-zine-eyebrow">
+                Edição impressa
+            </span>
+
+            <h2 class="section-title">
+                Zine AFROLOGIA
+            </h2>
+
+            <p class="afro-zine-desc">
+                O Zine Afrologia é uma coletânea de poesias marginais, trazendo a essência da cultura urbana de Recife.
+            </p>
+
+        </div>
+
+
+        <div class="afro-zine-stage">
+
+            <div
+                class="afro-zine-scene"
+                id="afro-zine-trigger"
+                aria-label="Arraste horizontalmente para girar o Zine Afrologia"
+                role="application"
+            >
+
+                <div class="afro-zine-card" id="afro-zine-card">
+
+                    <!-- CAPA -->
+                    <div class="afro-zine-face afro-zine-front">
+
+                        <img
+                            src="capa-zine.jpg"
+                            alt="Capa do Zine Afrologia"
+                            class="afro-zine-img"
+                            draggable="false"
+                        >
+
+                        <div class="afro-zine-face-overlay"></div>
+
+                    </div>
+
+
+                    <!-- QUARTA CAPA -->
+                    <div class="afro-zine-face afro-zine-back">
+
+                        <img
+                            src="quarta-capa-zine.jpg"
+                            alt="Quarta capa do Zine Afrologia"
+                            class="afro-zine-img"
+                            draggable="false"
+                        >
+
+                        <div class="afro-zine-face-overlay"></div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INDICADOR DE INTERAÇÃO -->
+                <div
+                    class="afro-zine-hint"
+                    id="afro-zine-hint"
+                    aria-hidden="true"
+                >
+
+                    <span class="afro-zine-hint-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.7"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path d="M8 12V6a2 2 0 0 1 4 0v5"/>
+                            <path d="M12 11V5a2 2 0 0 1 4 0v7"/>
+                            <path d="M16 12V8a2 2 0 0 1 4 0v7"/>
+                            <path d="M8 11V9a2 2 0 0 0-4 0v4c0 5 3 8 8 8h1c4 0 7-3 7-7"/>
+                        </svg>
+
+                    </span>
+
+                    <span>Arraste para girar</span>
+
+                    <span class="afro-zine-hint-arrow">↔</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="afro-zine-action">
+
+            <p class="afro-zine-action-label">
+                Leve essa experiência com você.
+            </p>
+
+            <a
+                href="#"
+                class="btn-afro-zine-buy"
+                id="afro-zine-buy"
+            >
+
+                <span class="btn-afro-zine-buy-text">
+                    Comprar o Zine
+                </span>
+
+                <span class="btn-afro-zine-buy-icon">
+
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M5 12h14"/>
+                        <path d="m13 6 6 6-6 6"/>
+                    </svg>
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
     </main>
 
-    <footer class="footer-afrologia">
-        <div class="footer-content">
-            <div class="footer-section">
+    <!-- FOOTER PREMIUM AFROLOGIA -->
+<footer class="footer-afrologia footer-parallax" id="contato">
+    <!-- Fundo Parallax -->
+    <div class="footer-bg-parallax"></div>
+    <div class="footer-overlay"></div>
+    
+    <div class="footer-container">
+        <div class="footer-grid">
+            
+            <!-- Coluna 1: Branding -->
+            <div class="footer-col footer-reveal">
                 <a class="navbar-brand scroll-link" href="#cp-home">
-                    <img src="afro.png" alt="Logo Afrologia" class="logo-premium">
+                    <img src="afro-pre.png" alt="Logo Afrologia" class="footer-logo">
                 </a>
-                <h3 class="footer-title">AFROLOGIA</h3>
+                <p class="footer-tagline">Afrologia é poesia tarja preta.</p>
             </div>
-            <div class="footer-section">
-                <p class="footer-credit">Afrologia - Um coletivo de poetas do Recife</p>
+            
+            <!-- Coluna 2: Menu / Navegação -->
+            <div class="footer-col footer-reveal">
+                <h4 class="footer-heading">Explore</h4>
+                <ul class="footer-nav">
+                    <li><a href="#cp-home" class="scroll-link">Início</a></li>
+                    <li><a href="#poetas" class="scroll-link">Poetas</a></li>
+                    <li><a href="#zine" class="scroll-link">Zine</a></li>
+                </ul>
             </div>
+            
+            <!-- Coluna 3: Contato & Social -->
+            <div class="footer-col footer-reveal">
+                <h4 class="footer-heading">Conecte-se</h4>
+                <a href="mailto:contato@afrologia.com.br" class="footer-email">contato@afrologia.com.br</a>
+                <div class="footer-socials">
+                    <a href="https://www.instagram.com/afro.logia/" target="_blank" class="social-link" aria-label="Instagram">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+                    <a href="#" class="social-link" aria-label="YouTube">
+                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Coluna 4: Download Portfólio -->
+            <div class="footer-col footer-reveal">
+                <h4 class="footer-heading">PORTFÓLIO</h4>
+                <p class="footer-microcopy">Conheça mais do nosso trabalho.</p>
+                <a href="portfolio.pdf" download class="btn-minimal-pdf">
+                    <span class="btn-minimal-text">Baixar Portfólio (PDF)</span>
+                    <span class="btn-minimal-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </span>
+                </a>
+            </div>
+            
         </div>
-        <div class="footer-divider"></div>
-        <div class="footer-bottom">
+        
+        <div class="footer-divider footer-reveal"></div>
+        
+        <div class="footer-bottom footer-reveal">
             <p class="footer-link">© 2026 Todos os direitos reservados</p>
-            <p class="footer-creator">Desenvolvido por: <span>Luciano F Vital</span></p>
+            <p class="footer-creator">Desenvolvido por: <a href="https://www.lucianofvital.com.br" target="_blank">Luciano F Vital</a></p>
         </div>
-    </footer>
+    </div>
+</footer>
 
     <!-- Scripts unificados -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/Draggable.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/InertiaPlugin.min.js"></script>
+
     <script src="script.js"></script>
+
+    
 </body>
 </html>
