@@ -358,7 +358,7 @@ body.site-scrolled .header-fundo {
 .footer-afrologia {
     position: relative;
     overflow: hidden;
-    margin-top: 5rem;
+
     padding: 6rem 1.5rem 2rem 1.5rem;
     color: #ffffff;
     background-color: #0f0f0f;
@@ -1371,4 +1371,502 @@ body.site-scrolled .header-fundo {
 .loaded #afro-preloader {
     opacity: 0;
     visibility: hidden;
+}
+
+
+
+
+/* ============================================================
+   PÁGINA INDIVIDUAL DO INTEGRANTE (Base CodePen Adaptada)
+   ============================================================ */
+.integrante-page {
+    background-color: var(--cor-fundo-papeu);
+    overflow-x: hidden;
+}
+
+#integrante-hero-track {
+    overflow: hidden;
+    box-shadow: 0 24px 43px rgba(0,0,0,0.60), 0 20px 17px rgba(0,0,0,0.6);
+    position: relative;
+    z-index: 2;
+    background-color: #000;
+}
+
+.integrante-hero {
+    display: flex;
+    min-height: 100vh;
+    /* Consome as variáveis declaradas no HTML para a cor personalizada */
+    background-image: linear-gradient(-45deg, var(--cor-overlay-1, purple), var(--cor-overlay-2, blue));
+    color: white;
+    align-items: flex-end;
+    overflow: hidden;
+    position: relative;
+}
+
+.integrante-hero .bg-img {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center 20%;
+    opacity: 0.6; /* Deixa a imagem mais escura para o gradiente sobressair */
+    mix-blend-mode: multiply; /* Mescla a foto com as cores escolhidas */
+    z-index: 0;
+}
+
+.integrante-hero .integrante-txt {
+    width: 100%;
+    height: min-content;
+    padding: 0 1.5em;
+    margin: 2em 10%;
+    display: flex;
+    flex-direction: column;
+    z-index: 2;
+    position: relative;
+}
+
+.integrante-hero .integrante-txt h1 {
+    font-size: clamp(3rem, 8vw, 6rem);
+    letter-spacing: 2px;
+    margin: 4px 0;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.6);
+}
+
+.integrante-hero .integrante-txt p {
+    font-family: var(--fonte-body);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    width: 100%;
+    max-width: 600px;
+    opacity: 0.9;
+    margin-bottom: 2em;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+}
+
+.integrante-hero .scroll-icon {
+    height: 36px;
+    width: 42px;
+    fill: white;
+    opacity: 0.6;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    transition: opacity 0.3s ease;
+}
+
+/* Área de Conteúdo */
+.integrante-content {
+    min-height: 100vh;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    background-color: var(--cor-fundo-papeu);
+    position: relative;
+    z-index: 1;
+}
+
+.integrante-content .txt-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.integrante-content p {
+    font-family: var(--fonte-body);
+    font-size: 1.1rem;
+    color: var(--cor-texto-preto-profundo);
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .integrante-hero .integrante-txt {
+        margin: 2em 5%;
+    }
+}
+
+
+
+
+
+/* ============================================================
+   NOVA SEÇÃO DE LIVROS (ESCOPO: .afro-obras-wrapper)
+   ============================================================ */
+
+.afro-obras-wrapper {
+  /* Variáveis locais mapeando a identidade visual do projeto Afrologia */
+  --book-bg-color: var(--cor-fundo-papeu);
+  --book-text-color: var(--cor-texto-preto-profundo);
+  --book-title-color: var(--cor-marrom-escuro);
+  --shelf-bg: linear-gradient(to bottom, #eae4df, #dcd4cc);
+  --shelf-edge-top: rgba(255, 255, 255, 0.4);
+  --shelf-edge-bottom: rgba(160, 97, 45, 0.2);
+  --book-back-cover: var(--cor-marrom-escuro);
+  --book-page: #ffffff;
+  --book-page-border: rgba(160, 97, 45, 0.2);
+  --book-shadow: rgba(0, 0, 0, 0.15);
+  --book-shadow-strong: rgba(160, 97, 45, 0.4);
+  
+  position: relative;
+  background-color: var(--book-bg-color);
+  width: 100%;
+  padding: 4rem 0 2rem 0;
+  overflow: hidden;
+  font-family: var(--fonte-body);
+  color: var(--book-text-color);
+  z-index: 2;
+}
+
+.afro-obras-wrapper .shelf-container {
+  position: relative;
+  width: 100%;
+  height: 480px; 
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+}
+
+.afro-obras-wrapper .shelf {
+  display: block;
+  position: absolute;
+  bottom: 120px; 
+  width: 100%;
+  max-width: 900px;
+  height: 12px;
+  background: var(--shelf-bg);
+  border-radius: 1px;
+  z-index: 20;
+  box-shadow:
+    0px -1px 1px rgba(255, 255, 255, 0.5),
+    0px 5px 15px rgba(160, 97, 45, 0.15),
+    0px 15px 30px rgba(0, 0, 0, 0.08);
+}
+
+.afro-obras-wrapper .shelf:after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--shelf-edge-bottom);
+}
+
+.afro-obras-wrapper .shelf:before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--shelf-edge-top);
+}
+
+.afro-obras-wrapper .books-wrapper {
+  position: absolute;
+  bottom: 230px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3rem;
+  z-index: 10;
+  width: 100%;
+  max-width: 900px;
+}
+
+.afro-obras-wrapper .books__item {
+  text-align: center;
+  cursor: default;
+  height: 230px;
+  flex-shrink: 0;
+}
+
+.afro-obras-wrapper .books__container {
+  position: relative;
+  width: 150px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.afro-obras-wrapper .books__cover {
+  position: relative;
+  will-change: transform;
+  height: 100%;
+}
+
+.afro-obras-wrapper .books__hitbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.afro-obras-wrapper .books__back-cover {
+  position: absolute;
+  width: 96%;
+  height: 96%;
+  top: 2%;
+  left: 2%;
+  background: var(--book-back-cover);
+  border-radius: 0 6px 6px 0;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.25);
+  z-index: -10;
+}
+
+.afro-obras-wrapper .books__inside {
+  position: absolute;
+  width: 90%;
+  height: 94%;
+  top: 3%;
+  left: 5%;
+  z-index: 0;
+}
+
+.afro-obras-wrapper .books__page {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 98%;
+  height: 100%;
+  background: var(--book-page);
+  border: 1px solid var(--book-page-border);
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  transform-origin: right center;
+  z-index: -5;
+}
+
+.afro-obras-wrapper .books__image {
+  line-height: 0;
+  position: relative;
+  border-radius: 2px 6px 6px 2px;
+  height: 100%;
+  box-shadow: var(--book-shadow) 10px -5px 20px, var(--book-shadow) 20px 0px 30px;
+  transform-origin: left center;
+  cursor: pointer;
+  will-change: transform, box-shadow;
+  z-index: 10;
+}
+
+.afro-obras-wrapper .books__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px 6px 6px 2px;
+}
+
+.afro-obras-wrapper .books__effect {
+  position: absolute;
+  width: 24px;
+  height: 100%;
+  margin-left: 12px;
+  top: 0;
+  border-left: 2px solid rgba(0, 0, 0, 0.08);
+  background-image: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0) 100%);
+  transform-origin: left center;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.afro-obras-wrapper .books__light {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  border-radius: 2px 6px 6px 2px;
+  background-image: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 100%);
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.15;
+  transform-origin: left center;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+.afro-obras-wrapper .book-shadow {
+  position: absolute;
+  bottom: 228px; 
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3rem;
+  z-index: 15;
+  width: 100%;
+  max-width: 900px;
+}
+
+.afro-obras-wrapper .book-shadow__item {
+  width: 120px;
+  height: 3px;
+  background: radial-gradient(ellipse at center, var(--book-shadow) 0%, rgba(0,0,0,0) 70%);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.afro-obras-wrapper .book-descriptions {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  margin: -200px auto 0;
+  z-index: 5;
+  height: 250px;
+  margin-bottom: 50px;
+}
+
+.afro-obras-wrapper .book-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+.afro-obras-wrapper .book-description.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 10;
+}
+
+.afro-obras-wrapper .book-description h3 {
+  font-family: var(--fonte-urban);
+  font-size: 2.2rem;
+  margin-bottom: 0.2rem;
+  color: var(--book-title-color);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.afro-obras-wrapper .book-description .author {
+  font-weight: 600;
+  color: var(--cor-texto-marrom-terroso);
+  margin-bottom: 1.2rem;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.afro-obras-wrapper .book-description p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: var(--book-text-color);
+}
+
+/* BOTÃO MINIMALISTA */
+.afro-obras-wrapper .btn-minimal-buy {
+  display: inline-block;
+  padding: 12px 30px;
+  font-family: var(--fonte-urban);
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--cor-texto-marrom-terroso);
+  border: 2px solid var(--cor-texto-marrom-terroso);
+  border-radius: 4px;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  text-decoration: none;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.afro-obras-wrapper .btn-minimal-buy:hover {
+  background: var(--cor-texto-marrom-terroso);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(160, 97, 45, 0.25);
+  transform: translateY(-3px) !important;
+}
+
+/* FIX PARA O SPLIT TYPE */
+.afro-obras-wrapper .line { overflow: hidden !important; display: block; }
+.afro-obras-wrapper .line .line-inner { display: block; }
+
+/* ============================================================
+   O PULO DO GATO: RESPONSIVIDADE (SCROLL LATERAL MOBILE)
+   ============================================================ */
+@media (max-width: 800px) {
+  .afro-obras-wrapper {
+    padding-top: 3rem;
+  }
+
+  /* Container pai com altura definida para não colidir com o texto */
+  .afro-obras-wrapper .shelf-container {
+    height: 350px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    position: relative;
+    /* Adiciona margens virtuais para o scroll não cortar o primeiro item */
+    scroll-padding: 0 calc(50vw - 75px);
+  }
+  
+  .afro-obras-wrapper .shelf-container::-webkit-scrollbar { display: none; }
+  
+  /* O Wrapper dos livros agora é flexível de verdade e cria o eixo da prateleira */
+  .afro-obras-wrapper .books-wrapper {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    transform: none;
+    height: 100%;
+    width: max-content;
+    align-items: flex-end;
+    /* 50px de espaço no fundo para a prateleira encaixar embaixo */
+    padding-bottom: 50px;
+    gap: 3.5rem;
+    margin-left: 500px;
+  }
+  
+  /* Espaçadores falsos para garantir que o primeiro e último livro fiquem no centro */
+  .afro-obras-wrapper .books-wrapper::before,
+  .afro-obras-wrapper .books-wrapper::after {
+    content: "";
+    width: calc(50vw - 75px - 3.5rem);
+    height: 10px;
+  }
+
+  .afro-obras-wrapper .books__item {
+    scroll-snap-align: center;
+    transform: scale(1.1);
+    transform-origin: bottom center; /* Cresce a partir da base para não flutuar */
+  }
+
+  .afro-obras-wrapper .book-shadow { display: none; } /* Oculto no mobile para visual mais limpo */
+  
+  /* A prateleira agora fica ancorada 40px do fundo (10px abaixo dos livros) */
+  .afro-obras-wrapper .shelf {
+    bottom: 40px; 
+    width: 235vw; /* Estica a prateleira para cobrir toda a área de rolagem */
+    left: -100vw;
+    margin-left: 375px;
+  }
+  
+  /* O texto agora desce respeitando o espaço dos livros (Removida a margem negativa) */
+  .afro-obras-wrapper .book-descriptions {
+    margin-top: 0;
+    height: auto;
+    min-height: 250px;
+    padding-bottom: 2rem;
+  }
+  
+  .afro-obras-wrapper .book-description h3 { 
+    font-size: 1.6rem; 
+  }
+  
+  .afro-obras-wrapper .book-description {
+    padding: 0 1rem;
+  }
 }

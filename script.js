@@ -69,12 +69,20 @@ document.addEventListener("DOMContentLoaded", function() {
     /* ========================================================
        4. HEADER/ICONS AO ROLAR (Muda cor do Hambúrguer)
        ======================================================== */
-    const heroSection = document.getElementById('cp-home');
+    const heroSection =
+        document.getElementById('cp-home') ||
+        document.getElementById('integrante-hero-track') ||
+        document.querySelector('.integrante-page .integrante-hero');
+
     const updateHeaderState = () => {
         const scrollTop = window.scrollY;
-        const heroHeight = heroSection ? heroSection.offsetHeight : 0;
-        // Adiciona classe site-scrolled ao body apenas quando a rolagem passa da altura do Hero (-50px margem)
-        document.body.classList.toggle('site-scrolled', scrollTop > heroHeight - 50);
+        const heroHeight = heroSection
+            ? (heroSection.offsetHeight || heroSection.getBoundingClientRect().height || 0)
+            : 0;
+        const threshold = Math.max(120, heroHeight - 80);
+
+        // Adiciona classe site-scrolled ao body apenas quando a rolagem passa da altura do hero da página atual
+        document.body.classList.toggle('site-scrolled', scrollTop > threshold);
     };
 
     window.addEventListener('scroll', updateHeaderState, { passive: true });
@@ -780,4 +788,197 @@ document.addEventListener("DOMContentLoaded", function() {
             );
         }
     }
+});
+
+
+
+/* ============================================================
+   ANIMAÇÃO HERO DO INTEGRANTE (ScrollTrigger)
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", function() {
+    const heroTrack = document.querySelector("#integrante-hero-track, #integrante-hero-anim");
+    const heroScrollIcon = heroTrack ? heroTrack.querySelector('.integrante-hero .scroll-icon') : null;
+
+    // Verifica se a seção existe na página atual antes de rodar o GSAP
+    if (heroTrack && typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+        gsap.registerPlugin(ScrollTrigger);
+
+        let tlIntegrante = gsap.timeline({
+            scrollTrigger: {
+                trigger: heroTrack,
+                pin: true,
+                start: '50% 50%',
+                end: '+=300px',
+                scrub: 1,
+                snap: {
+                    snapTo: 'labels',
+                    duration: { min: 0.1, max: 0.5 },
+                    delay: 0,
+                    ease: 'linear'
+                }
+            }
+        });
+
+        tlIntegrante.to(heroTrack, {
+            scale: 0.92,
+            borderBottomRightRadius: "2.5em",
+            borderBottomLeftRadius: "2.5em",
+            borderTopRightRadius: "2.5em",
+            borderTopLeftRadius: "2.5em",
+            duration: 1.5
+        }, 0)
+        .to(heroScrollIcon, {
+            rotate: 180,
+            duration: 0.2
+        }, 0)
+        .to(heroTrack, {
+            boxShadow: '0 0px 0px rgba(0,0,0,0.30), 0 0px 0px rgba(0,0,0,0.22)',
+            duration: 2,
+            ease: 'linear'
+        }, 0);
+    }
+});
+
+
+
+
+
+/* ============================================================
+   LÓGICA SEÇÃO DE LIVROS AFROLOGIA (GSAP)
+   ============================================================ */
+document.addEventListener("DOMContentLoaded", function () {
+  const wrapper = document.querySelector(".afro-obras-wrapper");
+  if (!wrapper || typeof gsap === "undefined") return;
+
+  let activeBookIndex = 3; 
+  let activeBookTimeline = null;
+  const books = wrapper.querySelectorAll(".books__item");
+  const bookTimelines = [];
+  const descriptions = wrapper.querySelectorAll(".book-description");
+
+  // Configura GSAP
+  books.forEach((book, index) => {
+    const hitbox = book.querySelector(".books__hitbox");
+    const bookImage = book.querySelector(".books__image");
+    const bookEffect = book.querySelector(".books__effect");
+    const pages = book.querySelectorAll(".books__page");
+    const bookLight = book.querySelector(".books__light");
+    const bookShadow = wrapper.querySelectorAll(".book-shadow__item")[index];
+
+    gsap.set(bookImage, { boxShadow: "var(--book-shadow) 10px 5px 20px, var(--book-shadow) 20px 0px 30px" });
+    gsap.set(bookLight, { opacity: 0.1 });
+    gsap.set(pages, { x: 0 });
+
+    const hoverIn = gsap.timeline({ paused: true, defaults: { duration: 0.6, ease: "power3.out" } });
+
+    hoverIn.to(bookImage, {
+      translateX: -12,
+      scaleX: 0.95,
+      boxShadow: "var(--book-shadow-strong) 25px 10px 25px, var(--book-shadow) 35px 0px 35px"
+    }, 0);
+
+    if(bookShadow) hoverIn.to(bookShadow, { width: 140, opacity: 0.8 }, 0);
+    hoverIn.to(bookEffect, { marginLeft: 10 }, 0);
+    hoverIn.to(bookLight, { opacity: 0.25 }, 0);
+
+    if (pages.length) {
+      hoverIn.to(pages[0], { x: "3px", ease: "power2.inOut" }, 0);
+      hoverIn.to(pages[1], { x: "0px", ease: "power2.inOut" }, 0);
+      hoverIn.to(pages[2], { x: "-3px", ease: "power2.inOut" }, 0);
+    }
+
+    bookTimelines[index] = hoverIn;
+
+    // Desktop: interação via Mouse Enter
+    hitbox.addEventListener("mouseenter", () => {
+      if (window.innerWidth > 800) activateBook(index);
+    });
+  });
+
+  // Inicializa SplitType 
+  descriptions.forEach((desc) => {
+    const titleElement = desc.querySelector("h3");
+    const authorElement = desc.querySelector(".author");
+    const textElement = desc.querySelector(".lines-animation p");
+
+    if (typeof SplitType !== "undefined") {
+      new SplitType(titleElement, { types: "lines", lineClass: "line" });
+      new SplitType(authorElement, { types: "lines", lineClass: "line" });
+      new SplitType(textElement, { types: "lines", lineClass: "line" });
+      
+      desc.querySelectorAll(".line").forEach(line => {
+        line.innerHTML = `<span class="line-inner">${line.innerHTML}</span>`;
+      });
+    }
+
+    // Configuração inicial CSS
+    if (desc.getAttribute("data-book-index") !== "3") {
+      gsap.set(desc.querySelectorAll(".line-inner"), { yPercent: 100, opacity: 0 });
+      gsap.set(desc.querySelector(".btn-minimal-buy"), { y: 15, opacity: 0 });
+    } else {
+      gsap.set(desc.querySelectorAll(".line-inner"), { yPercent: 0, opacity: 1 });
+      gsap.set(desc.querySelector(".btn-minimal-buy"), { y: 0, opacity: 1 });
+    }
+  });
+
+  function updateDescription(indexStr) {
+    descriptions.forEach((desc) => {
+      const descIndex = desc.getAttribute("data-book-index");
+      if (descIndex !== indexStr && desc.classList.contains("active")) {
+        desc.classList.remove("active");
+        gsap.to(desc.querySelectorAll(".line-inner"), { yPercent: 100, opacity: 0, duration: 0.3, stagger: 0.02 });
+        gsap.to(desc.querySelector(".btn-minimal-buy"), { y: 15, opacity: 0, duration: 0.3 });
+      }
+    });
+
+    const activeDesc = wrapper.querySelector(`.book-description[data-book-index="${indexStr}"]`);
+    if (activeDesc) {
+      activeDesc.classList.add("active");
+      gsap.fromTo(activeDesc.querySelectorAll(".line-inner"),
+        { yPercent: 100, opacity: 0 },
+        { yPercent: 0, opacity: 1, duration: 0.6, stagger: 0.05, ease: "power2.out", delay: 0.1 }
+      );
+      gsap.fromTo(activeDesc.querySelector(".btn-minimal-buy"),
+        { y: 15, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.6, ease: "power2.out", delay: 0.3 }
+      );
+    }
+  }
+
+  function activateBook(index) {
+    if (activeBookIndex !== null && activeBookIndex !== index && activeBookTimeline) {
+      activeBookTimeline.reverse();
+    }
+    activeBookIndex = index;
+    activeBookTimeline = bookTimelines[index];
+    bookTimelines[index].play();
+    updateDescription(index.toString());
+  }
+
+  // Volta pro livro default ao sair (apenas no desktop)
+  wrapper.querySelector(".shelf-container").addEventListener("mouseleave", () => {
+    if (window.innerWidth > 800) activateBook(3);
+  });
+
+  // O PULO DO GATO NO MOBILE: 
+  // Intersection Observer detecta qual livro está no centro do scroll
+  if (window.innerWidth <= 800 && typeof IntersectionObserver !== "undefined") {
+    const shelfContainer = wrapper.querySelector(".shelf-container");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const indexStr = entry.target.querySelector('.books__hitbox').dataset.bookIndex;
+          activateBook(parseInt(indexStr));
+        }
+      });
+    }, { 
+      root: shelfContainer, 
+      threshold: 0.7 // O livro precisa estar 70% visível para ativar
+    });
+
+    books.forEach(book => observer.observe(book));
+  } else {
+    // Inicia o livro padrão no desktop
+    activateBook(3); 
+  }
 });
